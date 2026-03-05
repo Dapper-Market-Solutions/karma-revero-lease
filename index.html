@@ -1875,7 +1875,8 @@
           showinfo: 0,
           rel: 0,
           modestbranding: 1,
-          playsinline: 1
+          playsinline: 1,
+          cc_load_policy: 1
         },
         events: {
           onReady: function(e) {
@@ -1883,6 +1884,9 @@
             e.target.playVideo();
             modalPlaying = true;
             modalMuted = true;
+            // Load captions module and enable for muted playback
+            e.target.loadModule('captions');
+            e.target.setOption('captions', 'track', { languageCode: 'en' });
             updateModalPlayUI();
             updateModalVolUI();
           }
@@ -1920,9 +1924,14 @@
         modalPlayer.unMute();
         modalPlayer.setVolume(80);
         modalMuted = false;
+        // Turn off captions when audio is on
+        modalPlayer.unloadModule('captions');
       } else {
         modalPlayer.mute();
         modalMuted = true;
+        // Turn captions back on when muted
+        modalPlayer.loadModule('captions');
+        modalPlayer.setOption('captions', 'track', { languageCode: 'en' });
       }
       updateModalVolUI();
     }
