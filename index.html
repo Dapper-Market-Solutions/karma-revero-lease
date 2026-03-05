@@ -1576,6 +1576,33 @@
     </div>
   </section>
 
+  <!-- VIDEO BACKGROUND SECTION -->
+  <section class="video-cta-section" id="videoCta">
+    <div class="video-cta-bg" id="bgVideoWrap"></div>
+    <div class="video-cta-overlay"></div>
+    <div class="video-cta-content">
+      <p class="section-label">Experience the Drive</p>
+      <h2>More Than a Car.<br><strong>A Conversation Starter.</strong></h2>
+      <div class="video-cta-actions">
+        <button class="btn-play-pause" id="bgPlayPause" onclick="toggleBgVideo()">
+          <svg id="bgPlayIcon" viewBox="0 0 20 20" fill="currentColor"><polygon points="4,2 18,10 4,18"/></svg>
+          <svg id="bgPauseIcon" viewBox="0 0 20 20" fill="currentColor" style="display:none;"><rect x="3" y="2" width="5" height="16"/><rect x="12" y="2" width="5" height="16"/></svg>
+          <span id="bgPlayLabel">Play Film</span>
+        </button>
+        <button class="btn-play-pause" id="bgVolume" onclick="toggleBgVolume()">
+          <svg id="bgVolOnIcon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" style="display:none;">
+            <path d="M11 5L6 9H2v6h4l5 4V5z"/><path d="M19.07 4.93a10 10 0 010 14.14M15.54 8.46a5 5 0 010 7.07"/>
+          </svg>
+          <svg id="bgVolOffIcon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+            <path d="M11 5L6 9H2v6h4l5 4V5z"/><line x1="23" y1="9" x2="17" y2="15"/><line x1="17" y1="9" x2="23" y2="15"/>
+          </svg>
+          <span id="bgVolLabel">Unmute</span>
+        </button>
+        <a href="#learn-more" class="btn-play-pause" style="text-decoration:none;">Learn More</a>
+      </div>
+    </div>
+  </section>
+
   <!-- OFFER STRIP MARQUEE -->
   <div class="offer-strip" aria-hidden="true">
     <div class="offer-strip-inner">
@@ -1850,20 +1877,14 @@
     </div>
   </section>
 
-  <!-- VIDEO CTA SECTION -->
-  <section class="video-cta-section" id="videoCta">
-    <div class="video-cta-bg" id="bgVideoWrap"></div>
-    <div class="video-cta-overlay"></div>
+  <!-- RETAILER CTA -->
+  <section class="video-cta-section">
+    <div class="video-cta-overlay" style="background:var(--black);"></div>
     <div class="video-cta-content">
-      <p class="section-label">Experience the Drive</p>
+      <p class="section-label">Start Your Experience Today</p>
       <h2>The Revero Is Waiting.<br><strong>Are You?</strong></h2>
       <div class="video-cta-actions">
         <a href="#learn-more" class="btn-ghost-white">Request Information</a>
-        <button class="btn-play-pause" id="bgPlayPause" onclick="toggleBgVideo()">
-          <svg id="bgPlayIcon" viewBox="0 0 20 20" fill="currentColor"><polygon points="4,2 18,10 4,18"/></svg>
-          <svg id="bgPauseIcon" viewBox="0 0 20 20" fill="currentColor" style="display:none;"><rect x="3" y="2" width="5" height="16"/><rect x="12" y="2" width="5" height="16"/></svg>
-          <span id="bgPlayLabel">Play Film</span>
-        </button>
       </div>
     </div>
   </section>
@@ -1916,6 +1937,8 @@
       });
     }
 
+    var bgMuted = true;
+
     function toggleBgVideo() {
       if (!bgPlayer) return;
       if (bgPlaying) {
@@ -1930,6 +1953,24 @@
         document.getElementById('bgPlayIcon').style.display = 'none';
         document.getElementById('bgPauseIcon').style.display = '';
         document.getElementById('bgPlayLabel').textContent = 'Pause Film';
+      }
+    }
+
+    function toggleBgVolume() {
+      if (!bgPlayer) return;
+      if (bgMuted) {
+        bgPlayer.unMute();
+        bgPlayer.setVolume(80);
+        bgMuted = false;
+        document.getElementById('bgVolOnIcon').style.display = '';
+        document.getElementById('bgVolOffIcon').style.display = 'none';
+        document.getElementById('bgVolLabel').textContent = 'Mute';
+      } else {
+        bgPlayer.mute();
+        bgMuted = true;
+        document.getElementById('bgVolOnIcon').style.display = 'none';
+        document.getElementById('bgVolOffIcon').style.display = '';
+        document.getElementById('bgVolLabel').textContent = 'Unmute';
       }
     }
 
