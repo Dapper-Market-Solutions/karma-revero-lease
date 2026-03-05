@@ -1072,27 +1072,104 @@
     /* ============================================
        RETAILER STRIP
        ============================================ */
-    .retailer-strip {
+    .video-cta-section {
+      position: relative;
+      overflow: hidden;
+      min-height: 480px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
       background: var(--black);
       color: var(--white);
-      padding: 80px 60px;
-      text-align: center;
     }
 
-    .retailer-strip .section-label {
+    .video-cta-bg {
+      position: absolute;
+      inset: -60px;
+      z-index: 0;
+      pointer-events: none;
+    }
+
+    .video-cta-bg iframe {
+      width: 100%;
+      height: 100%;
+      border: none;
+      object-fit: cover;
+    }
+
+    .video-cta-overlay {
+      position: absolute;
+      inset: 0;
+      background: rgba(0,0,0,0.55);
+      z-index: 1;
+    }
+
+    .video-cta-content {
+      position: relative;
+      z-index: 2;
+      padding: 80px 60px;
+    }
+
+    .video-cta-content .section-label {
       color: var(--taupe);
       margin-bottom: 24px;
     }
 
-    .retailer-strip h2 {
+    .video-cta-content h2 {
       font-size: clamp(22px, 3vw, 38px);
       font-weight: 100;
       letter-spacing: var(--tracking-tight);
       margin-bottom: 40px;
     }
 
-    .retailer-strip h2 strong {
+    .video-cta-content h2 strong {
       font-weight: 900;
+    }
+
+    .video-cta-actions {
+      display: flex;
+      gap: 20px;
+      justify-content: center;
+      align-items: center;
+      flex-wrap: wrap;
+    }
+
+    .btn-play-pause {
+      font-family: var(--font-brand);
+      font-size: 12px;
+      font-weight: 400;
+      letter-spacing: var(--tracking-wider);
+      text-transform: uppercase;
+      color: var(--white);
+      background: none;
+      border: 1px solid rgba(255,255,255,0.4);
+      padding: 16px 32px;
+      cursor: pointer;
+      transition: var(--transition-base);
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .btn-play-pause:hover {
+      border-color: var(--white);
+      background: rgba(255,255,255,0.1);
+    }
+
+    .btn-play-pause svg {
+      width: 14px;
+      height: 14px;
+    }
+
+    @media (max-width: 900px) {
+      .video-cta-section {
+        min-height: 360px;
+      }
+
+      .video-cta-content {
+        padding: 60px 32px;
+      }
     }
 
     .btn-ghost-white {
@@ -1773,11 +1850,22 @@
     </div>
   </section>
 
-  <!-- RETAILER CTA -->
-  <section class="retailer-strip">
-    <p class="section-label">Start Your Experience Today</p>
-    <h2>The Revero Is Waiting.<br><strong>Are You?</strong></h2>
-    <a href="#learn-more" class="btn-ghost-white">Request Information</a>
+  <!-- VIDEO CTA SECTION -->
+  <section class="video-cta-section" id="videoCta">
+    <div class="video-cta-bg" id="bgVideoWrap"></div>
+    <div class="video-cta-overlay"></div>
+    <div class="video-cta-content">
+      <p class="section-label">Experience the Drive</p>
+      <h2>The Revero Is Waiting.<br><strong>Are You?</strong></h2>
+      <div class="video-cta-actions">
+        <a href="#learn-more" class="btn-ghost-white">Request Information</a>
+        <button class="btn-play-pause" id="bgPlayPause" onclick="toggleBgVideo()">
+          <svg id="bgPlayIcon" viewBox="0 0 20 20" fill="currentColor"><polygon points="4,2 18,10 4,18"/></svg>
+          <svg id="bgPauseIcon" viewBox="0 0 20 20" fill="currentColor" style="display:none;"><rect x="3" y="2" width="5" height="16"/><rect x="12" y="2" width="5" height="16"/></svg>
+          <span id="bgPlayLabel">Play Film</span>
+        </button>
+      </div>
+    </div>
   </section>
 
   <!-- FINE PRINT -->
@@ -1800,8 +1888,52 @@
     <span class="footer-copy">&copy; Karma Automotive, Inc. All rights reserved.</span>
   </footer>
 
+  <script src="https://www.youtube.com/iframe_api"></script>
   <script>
-    // Video modal
+    // === Background video (YouTube IFrame API) ===
+    var bgPlayer = null;
+    var bgPlaying = false;
+
+    function onYouTubeIframeAPIReady() {
+      bgPlayer = new YT.Player('bgVideoWrap', {
+        videoId: 'eGBTt9PxoPA',
+        playerVars: {
+          autoplay: 0,
+          mute: 1,
+          controls: 0,
+          showinfo: 0,
+          rel: 0,
+          modestbranding: 1,
+          loop: 1,
+          playlist: 'eGBTt9PxoPA',
+          playsinline: 1
+        },
+        events: {
+          onReady: function(e) {
+            e.target.mute();
+          }
+        }
+      });
+    }
+
+    function toggleBgVideo() {
+      if (!bgPlayer) return;
+      if (bgPlaying) {
+        bgPlayer.pauseVideo();
+        bgPlaying = false;
+        document.getElementById('bgPlayIcon').style.display = '';
+        document.getElementById('bgPauseIcon').style.display = 'none';
+        document.getElementById('bgPlayLabel').textContent = 'Play Film';
+      } else {
+        bgPlayer.playVideo();
+        bgPlaying = true;
+        document.getElementById('bgPlayIcon').style.display = 'none';
+        document.getElementById('bgPauseIcon').style.display = '';
+        document.getElementById('bgPlayLabel').textContent = 'Pause Film';
+      }
+    }
+
+    // === Video modal (with controls for volume/subtitles) ===
     const VIDEO_SRC = 'https://www.youtube-nocookie.com/embed/eGBTt9PxoPA?autoplay=1&mute=1&rel=0&modestbranding=1&showinfo=0&controls=1&cc_load_policy=1';
 
     function openVideoModal() {
@@ -1809,21 +1941,23 @@
       const iframe = document.getElementById('videoIframe');
       iframe.src = VIDEO_SRC;
       modal.classList.remove('hidden');
+      // Pause background video while modal is open
+      if (bgPlayer && bgPlaying) bgPlayer.pauseVideo();
     }
 
     function closeVideoModal() {
       const modal = document.getElementById('videoModal');
       const iframe = document.getElementById('videoIframe');
       modal.classList.add('hidden');
-      iframe.src = ''; // stop playback
+      iframe.src = '';
+      // Resume background video if it was playing
+      if (bgPlayer && bgPlaying) bgPlayer.playVideo();
     }
 
-    // Close on overlay click (outside the video)
     document.getElementById('videoModal').addEventListener('click', function(e) {
       if (e.target === this) closeVideoModal();
     });
 
-    // Close on Escape key
     document.addEventListener('keydown', function(e) {
       if (e.key === 'Escape') closeVideoModal();
     });
