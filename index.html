@@ -1072,104 +1072,27 @@
     /* ============================================
        RETAILER STRIP
        ============================================ */
-    .video-cta-section {
-      position: relative;
-      overflow: hidden;
-      min-height: 480px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      text-align: center;
+    .retailer-strip {
       background: var(--black);
       color: var(--white);
-    }
-
-    .video-cta-bg {
-      position: absolute;
-      inset: -60px;
-      z-index: 0;
-      pointer-events: none;
-    }
-
-    .video-cta-bg iframe {
-      width: 100%;
-      height: 100%;
-      border: none;
-      object-fit: cover;
-    }
-
-    .video-cta-overlay {
-      position: absolute;
-      inset: 0;
-      background: rgba(0,0,0,0.55);
-      z-index: 1;
-    }
-
-    .video-cta-content {
-      position: relative;
-      z-index: 2;
       padding: 80px 60px;
+      text-align: center;
     }
 
-    .video-cta-content .section-label {
+    .retailer-strip .section-label {
       color: var(--taupe);
       margin-bottom: 24px;
     }
 
-    .video-cta-content h2 {
+    .retailer-strip h2 {
       font-size: clamp(22px, 3vw, 38px);
       font-weight: 100;
       letter-spacing: var(--tracking-tight);
       margin-bottom: 40px;
     }
 
-    .video-cta-content h2 strong {
+    .retailer-strip h2 strong {
       font-weight: 900;
-    }
-
-    .video-cta-actions {
-      display: flex;
-      gap: 20px;
-      justify-content: center;
-      align-items: center;
-      flex-wrap: wrap;
-    }
-
-    .btn-play-pause {
-      font-family: var(--font-brand);
-      font-size: 12px;
-      font-weight: 400;
-      letter-spacing: var(--tracking-wider);
-      text-transform: uppercase;
-      color: var(--white);
-      background: none;
-      border: 1px solid rgba(255,255,255,0.4);
-      padding: 16px 32px;
-      cursor: pointer;
-      transition: var(--transition-base);
-      display: inline-flex;
-      align-items: center;
-      gap: 8px;
-    }
-
-    .btn-play-pause:hover {
-      border-color: var(--white);
-      background: rgba(255,255,255,0.1);
-    }
-
-    .btn-play-pause svg {
-      width: 14px;
-      height: 14px;
-    }
-
-    @media (max-width: 900px) {
-      .video-cta-section {
-        min-height: 360px;
-      }
-
-      .video-cta-content {
-        padding: 60px 32px;
-      }
     }
 
     .btn-ghost-white {
@@ -1301,19 +1224,61 @@
       position: relative;
       width: 90%;
       max-width: 900px;
+    }
+
+    .video-modal-frame {
+      position: relative;
+      width: 100%;
       aspect-ratio: 16/9;
       background: #000;
     }
 
-    .video-modal iframe {
+    .video-modal-frame iframe {
       width: 100%;
       height: 100%;
       border: none;
-      
     }
 
     .video-click-guard {
-      display: none;
+      position: absolute;
+      inset: 0;
+      z-index: 1;
+      cursor: default;
+    }
+
+    .video-modal-controls {
+      display: flex;
+      gap: 12px;
+      padding: 16px 0;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .video-modal-controls button {
+      font-family: var(--font-brand);
+      font-size: 11px;
+      font-weight: 400;
+      letter-spacing: var(--tracking-wider);
+      text-transform: uppercase;
+      color: var(--white);
+      background: none;
+      border: 1px solid rgba(255,255,255,0.3);
+      padding: 10px 24px;
+      cursor: pointer;
+      transition: var(--transition-base);
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .video-modal-controls button:hover {
+      background: rgba(255,255,255,0.1);
+      border-color: var(--white);
+    }
+
+    .video-modal-controls button svg {
+      width: 14px;
+      height: 14px;
     }
 
     .video-modal-close {
@@ -1515,22 +1480,33 @@
 </head>
 <body>
 
-  <!-- VIDEO MODAL — auto-shows on page load -->
+  <!-- VIDEO MODAL -->
   <div class="video-modal-overlay hidden" id="videoModal">
     <div class="video-modal">
       <button class="video-modal-close" onclick="closeVideoModal()">
         <span>Close</span>
         <svg viewBox="0 0 14 14" fill="none"><path d="M1 1l12 12M13 1L1 13" stroke="currentColor" stroke-width="1.2"/></svg>
       </button>
-      <iframe
-        id="videoIframe"
-        src=""
-        allow="autoplay; encrypted-media"
-        allowfullscreen
-        title="Karma Revero"
-      ></iframe>
-      <div class="video-click-guard"></div>
-      <span class="video-modal-label">Karma Revero — Experience the Drive</span>
+      <div class="video-modal-frame">
+        <div id="modalPlayer"></div>
+        <div class="video-click-guard"></div>
+      </div>
+      <div class="video-modal-controls">
+        <button onclick="toggleModalPlay()">
+          <svg id="modalPlayIcon" viewBox="0 0 20 20" fill="currentColor"><polygon points="4,2 18,10 4,18"/></svg>
+          <svg id="modalPauseIcon" viewBox="0 0 20 20" fill="currentColor" style="display:none;"><rect x="3" y="2" width="5" height="16"/><rect x="12" y="2" width="5" height="16"/></svg>
+          <span id="modalPlayLabel">Pause</span>
+        </button>
+        <button onclick="toggleModalVolume()">
+          <svg id="modalVolOnIcon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" style="display:none;">
+            <path d="M11 5L6 9H2v6h4l5 4V5z"/><path d="M19.07 4.93a10 10 0 010 14.14M15.54 8.46a5 5 0 010 7.07"/>
+          </svg>
+          <svg id="modalVolOffIcon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+            <path d="M11 5L6 9H2v6h4l5 4V5z"/><line x1="23" y1="9" x2="17" y2="15"/><line x1="17" y1="9" x2="23" y2="15"/>
+          </svg>
+          <span id="modalVolLabel">Unmute</span>
+        </button>
+      </div>
     </div>
   </div>
 
@@ -1573,33 +1549,6 @@
 
     <div class="hero-visual">
       <img class="hero-car-img" src="img/hero-desert.png" alt="2025 Karma Revero — Grand Touring, Redefined" />
-    </div>
-  </section>
-
-  <!-- VIDEO BACKGROUND SECTION -->
-  <section class="video-cta-section" id="videoCta">
-    <div class="video-cta-bg" id="bgVideoWrap"></div>
-    <div class="video-cta-overlay"></div>
-    <div class="video-cta-content">
-      <p class="section-label">Experience the Drive</p>
-      <h2>More Than a Car.<br><strong>A Conversation Starter.</strong></h2>
-      <div class="video-cta-actions">
-        <button class="btn-play-pause" id="bgPlayPause" onclick="toggleBgVideo()">
-          <svg id="bgPlayIcon" viewBox="0 0 20 20" fill="currentColor"><polygon points="4,2 18,10 4,18"/></svg>
-          <svg id="bgPauseIcon" viewBox="0 0 20 20" fill="currentColor" style="display:none;"><rect x="3" y="2" width="5" height="16"/><rect x="12" y="2" width="5" height="16"/></svg>
-          <span id="bgPlayLabel">Play Film</span>
-        </button>
-        <button class="btn-play-pause" id="bgVolume" onclick="toggleBgVolume()">
-          <svg id="bgVolOnIcon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" style="display:none;">
-            <path d="M11 5L6 9H2v6h4l5 4V5z"/><path d="M19.07 4.93a10 10 0 010 14.14M15.54 8.46a5 5 0 010 7.07"/>
-          </svg>
-          <svg id="bgVolOffIcon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
-            <path d="M11 5L6 9H2v6h4l5 4V5z"/><line x1="23" y1="9" x2="17" y2="15"/><line x1="17" y1="9" x2="23" y2="15"/>
-          </svg>
-          <span id="bgVolLabel">Unmute</span>
-        </button>
-        <a href="#learn-more" class="btn-play-pause" style="text-decoration:none;">Learn More</a>
-      </div>
     </div>
   </section>
 
@@ -1878,15 +1827,10 @@
   </section>
 
   <!-- RETAILER CTA -->
-  <section class="video-cta-section">
-    <div class="video-cta-overlay" style="background:var(--black);"></div>
-    <div class="video-cta-content">
-      <p class="section-label">Start Your Experience Today</p>
-      <h2>The Revero Is Waiting.<br><strong>Are You?</strong></h2>
-      <div class="video-cta-actions">
-        <a href="#learn-more" class="btn-ghost-white">Request Information</a>
-      </div>
-    </div>
+  <section class="retailer-strip">
+    <p class="section-label">Start Your Experience Today</p>
+    <h2>The Revero Is Waiting.<br><strong>Are You?</strong></h2>
+    <a href="#learn-more" class="btn-ghost-white">Request Information</a>
   </section>
 
   <!-- FINE PRINT -->
@@ -1911,88 +1855,104 @@
 
   <script src="https://www.youtube.com/iframe_api"></script>
   <script>
-    // === Background video (YouTube IFrame API) ===
-    var bgPlayer = null;
-    var bgPlaying = false;
+    // === Modal video player (YouTube IFrame API) ===
+    var modalPlayer = null;
+    var modalPlaying = false;
+    var modalMuted = true;
+    var apiReady = false;
 
     function onYouTubeIframeAPIReady() {
-      bgPlayer = new YT.Player('bgVideoWrap', {
+      apiReady = true;
+    }
+
+    function createModalPlayer() {
+      modalPlayer = new YT.Player('modalPlayer', {
         videoId: 'eGBTt9PxoPA',
         playerVars: {
-          autoplay: 0,
+          autoplay: 1,
           mute: 1,
           controls: 0,
           showinfo: 0,
           rel: 0,
           modestbranding: 1,
-          loop: 1,
-          playlist: 'eGBTt9PxoPA',
           playsinline: 1
         },
         events: {
           onReady: function(e) {
             e.target.mute();
+            e.target.playVideo();
+            modalPlaying = true;
+            modalMuted = true;
+            updateModalPlayUI();
+            updateModalVolUI();
           }
         }
       });
     }
 
-    var bgMuted = true;
-
-    function toggleBgVideo() {
-      if (!bgPlayer) return;
-      if (bgPlaying) {
-        bgPlayer.pauseVideo();
-        bgPlaying = false;
-        document.getElementById('bgPlayIcon').style.display = '';
-        document.getElementById('bgPauseIcon').style.display = 'none';
-        document.getElementById('bgPlayLabel').textContent = 'Play Film';
-      } else {
-        bgPlayer.playVideo();
-        bgPlaying = true;
-        document.getElementById('bgPlayIcon').style.display = 'none';
-        document.getElementById('bgPauseIcon').style.display = '';
-        document.getElementById('bgPlayLabel').textContent = 'Pause Film';
-      }
+    function updateModalPlayUI() {
+      document.getElementById('modalPlayIcon').style.display = modalPlaying ? 'none' : '';
+      document.getElementById('modalPauseIcon').style.display = modalPlaying ? '' : 'none';
+      document.getElementById('modalPlayLabel').textContent = modalPlaying ? 'Pause' : 'Play';
     }
 
-    function toggleBgVolume() {
-      if (!bgPlayer) return;
-      if (bgMuted) {
-        bgPlayer.unMute();
-        bgPlayer.setVolume(80);
-        bgMuted = false;
-        document.getElementById('bgVolOnIcon').style.display = '';
-        document.getElementById('bgVolOffIcon').style.display = 'none';
-        document.getElementById('bgVolLabel').textContent = 'Mute';
-      } else {
-        bgPlayer.mute();
-        bgMuted = true;
-        document.getElementById('bgVolOnIcon').style.display = 'none';
-        document.getElementById('bgVolOffIcon').style.display = '';
-        document.getElementById('bgVolLabel').textContent = 'Unmute';
-      }
+    function updateModalVolUI() {
+      document.getElementById('modalVolOnIcon').style.display = modalMuted ? 'none' : '';
+      document.getElementById('modalVolOffIcon').style.display = modalMuted ? '' : 'none';
+      document.getElementById('modalVolLabel').textContent = modalMuted ? 'Unmute' : 'Mute';
     }
 
-    // === Video modal (with controls for volume/subtitles) ===
-    const VIDEO_SRC = 'https://www.youtube-nocookie.com/embed/eGBTt9PxoPA?autoplay=1&mute=1&rel=0&modestbranding=1&showinfo=0&controls=1&cc_load_policy=1';
+    function toggleModalPlay() {
+      if (!modalPlayer) return;
+      if (modalPlaying) {
+        modalPlayer.pauseVideo();
+        modalPlaying = false;
+      } else {
+        modalPlayer.playVideo();
+        modalPlaying = true;
+      }
+      updateModalPlayUI();
+    }
+
+    function toggleModalVolume() {
+      if (!modalPlayer) return;
+      if (modalMuted) {
+        modalPlayer.unMute();
+        modalPlayer.setVolume(80);
+        modalMuted = false;
+      } else {
+        modalPlayer.mute();
+        modalMuted = true;
+      }
+      updateModalVolUI();
+    }
 
     function openVideoModal() {
-      const modal = document.getElementById('videoModal');
-      const iframe = document.getElementById('videoIframe');
-      iframe.src = VIDEO_SRC;
+      var modal = document.getElementById('videoModal');
       modal.classList.remove('hidden');
-      // Pause background video while modal is open
-      if (bgPlayer && bgPlaying) bgPlayer.pauseVideo();
+      // Reset the player div so we can create a fresh one
+      var container = document.querySelector('.video-modal-frame');
+      var oldPlayer = document.getElementById('modalPlayer');
+      if (oldPlayer) {
+        if (modalPlayer && modalPlayer.destroy) modalPlayer.destroy();
+        modalPlayer = null;
+        var div = document.createElement('div');
+        div.id = 'modalPlayer';
+        container.insertBefore(div, container.querySelector('.video-click-guard'));
+      }
+      if (apiReady) createModalPlayer();
     }
 
     function closeVideoModal() {
-      const modal = document.getElementById('videoModal');
-      const iframe = document.getElementById('videoIframe');
+      var modal = document.getElementById('videoModal');
       modal.classList.add('hidden');
-      iframe.src = '';
-      // Resume background video if it was playing
-      if (bgPlayer && bgPlaying) bgPlayer.playVideo();
+      if (modalPlayer && modalPlayer.destroy) {
+        modalPlayer.pauseVideo();
+        modalPlayer.destroy();
+        modalPlayer = null;
+      }
+      modalPlaying = false;
+      modalMuted = true;
     }
 
     document.getElementById('videoModal').addEventListener('click', function(e) {
