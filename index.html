@@ -1,0 +1,1835 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Lease a Revero | Karma Automotive</title>
+  <meta name="description" content="Experience the pinnacle of sustainable luxury. Lease a 2025 Karma Revero from $1,297/mo for 36 months." />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Barlow:ital,wght@0,100;0,300;0,400;0,900&display=swap" rel="stylesheet" />
+
+  <style>
+    /* ============================================
+       FONT FACES
+       ============================================ */
+    @font-face {
+      font-family: 'Neue Plak Text';
+      font-weight: 100;
+      font-style: normal;
+      src: url('fonts/NeuePlakText-Thin.woff2') format('woff2'),
+           url('fonts/NeuePlakText-Thin.woff') format('woff');
+    }
+    @font-face {
+      font-family: 'Neue Plak Text';
+      font-weight: 300;
+      font-style: normal;
+      src: url('fonts/NeuePlakText-Light.woff2') format('woff2'),
+           url('fonts/NeuePlakText-Light.woff') format('woff');
+    }
+    @font-face {
+      font-family: 'Neue Plak Text';
+      font-weight: 400;
+      font-style: normal;
+      src: url('fonts/NeuePlakText-Regular.woff2') format('woff2'),
+           url('fonts/NeuePlakText-Regular.woff') format('woff');
+    }
+    @font-face {
+      font-family: 'Neue Plak Text';
+      font-weight: 900;
+      font-style: normal;
+      src: url('fonts/NeuePlakText-Black.woff2') format('woff2'),
+           url('fonts/NeuePlakText-Black.woff') format('woff');
+    }
+
+    /* ============================================
+       CSS VARIABLES — Karma Brand System
+       ============================================ */
+    :root {
+      --white:        #F0F0F1;
+      --black:        #000000;
+      --taupe:        #B1A699;
+      --taupe-dark:   #53422D;
+      --grey-cool:    #96989B;
+      --grey-light:   #E4E6E9;
+      --grey-dark:    #535760;
+      --off-white:    #F7F7CA;
+
+      --font-brand:   'Neue Plak Text', 'Barlow', sans-serif;
+
+      --tracking-wide:   0.15em;
+      --tracking-wider:  0.25em;
+      --tracking-tight: -0.025em;
+
+      --transition-base: 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+      --transition-slow: 0.7s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    }
+
+    /* ============================================
+       RESET & BASE
+       ============================================ */
+    *, *::before, *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html {
+      scroll-behavior: smooth;
+      font-size: 16px;
+    }
+
+    body {
+      font-family: var(--font-brand);
+      font-weight: 300;
+      background-color: var(--white);
+      color: var(--black);
+      overflow-x: hidden;
+      line-height: 1.6;
+    }
+
+    img {
+      display: block;
+      max-width: 100%;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    /* ============================================
+       KARMA FRAME CORNERS — Brand Decorative System
+       ============================================ */
+    .karma-frame {
+      position: relative;
+    }
+
+    .karma-frame::before,
+    .karma-frame::after,
+    .karma-frame .frame-br,
+    .karma-frame .frame-bl {
+      content: '';
+      position: absolute;
+      width: 40px;
+      height: 40px;
+      z-index: 10;
+      pointer-events: none;
+    }
+
+    .karma-frame::before {
+      top: 16px;
+      left: 16px;
+      border-top: 1px solid var(--taupe);
+      border-left: 1px solid var(--taupe);
+    }
+
+    .karma-frame::after {
+      top: 16px;
+      right: 16px;
+      border-top: 1px solid var(--taupe);
+      border-right: 1px solid var(--taupe);
+    }
+
+    .frame-br {
+      bottom: 16px;
+      right: 16px;
+      border-bottom: 1px solid var(--taupe);
+      border-right: 1px solid var(--taupe);
+    }
+
+    .frame-bl {
+      bottom: 16px;
+      left: 16px;
+      border-bottom: 1px solid var(--taupe);
+      border-left: 1px solid var(--taupe);
+    }
+
+    .taupe-rule {
+      display: block;
+      width: 120px;
+      height: 1px;
+      background: var(--taupe);
+      margin-bottom: 24px;
+    }
+
+    .taupe-rule--center {
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    /* ============================================
+       NAVIGATION
+       ============================================ */
+    .site-nav {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      z-index: 1000;
+      padding: 20px 40px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      background: rgba(240, 240, 241, 0.92);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      border-bottom: 1px solid rgba(177, 166, 153, 0.25);
+      transition: var(--transition-base);
+    }
+
+    .site-nav.scrolled {
+      padding: 14px 40px;
+      background: rgba(240, 240, 241, 0.98);
+    }
+
+    .nav-logo {
+      height: 22px;
+      width: auto;
+    }
+
+    .nav-logo-text {
+      font-family: var(--font-brand);
+      font-weight: 900;
+      font-size: 22px;
+      letter-spacing: var(--tracking-wider);
+      color: var(--black);
+      text-transform: uppercase;
+    }
+
+    .nav-cta {
+      font-family: var(--font-brand);
+      font-weight: 400;
+      font-size: 12px;
+      letter-spacing: var(--tracking-wider);
+      text-transform: uppercase;
+      color: var(--black);
+      border: 1px solid var(--black);
+      padding: 10px 28px;
+      transition: var(--transition-base);
+    }
+
+    .nav-cta:hover {
+      background: var(--black);
+      color: var(--white);
+    }
+
+    /* ============================================
+       HERO SECTION
+       ============================================ */
+    .hero {
+      min-height: 100vh;
+      background: linear-gradient(135deg, var(--white) 0%, var(--grey-light) 50%, #d8d9db 100%);
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      align-items: center;
+      padding: 120px 60px 80px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero::after {
+      content: '';
+      position: absolute;
+      top: 10%;
+      right: 0;
+      width: 65%;
+      height: 80%;
+      background: radial-gradient(ellipse at 60% 40%, rgba(255,255,255,0.9) 0%, rgba(200,202,206,0.4) 45%, transparent 75%);
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    .hero-content {
+      position: relative;
+      z-index: 2;
+      animation: fadeInLeft 1s ease forwards;
+    }
+
+    .hero-eyebrow {
+      font-size: 12px;
+      font-weight: 400;
+      letter-spacing: var(--tracking-wider);
+      text-transform: uppercase;
+      color: var(--taupe);
+      margin-bottom: 16px;
+    }
+
+    .hero-wordmark {
+      font-size: 15px;
+      font-weight: 900;
+      letter-spacing: var(--tracking-wider);
+      text-transform: uppercase;
+      color: var(--black);
+      margin-bottom: 36px;
+      display: block;
+    }
+
+    .hero-logo-img {
+      height: 32px;
+      width: auto;
+      margin-bottom: 36px;
+    }
+
+    .hero-headline {
+      font-size: clamp(15px, 1.8vw, 20px);
+      font-weight: 900;
+      letter-spacing: var(--tracking-wider);
+      text-transform: uppercase;
+      color: var(--black);
+      line-height: 1.3;
+      margin-bottom: 8px;
+    }
+
+    .hero-subheadline {
+      font-size: clamp(38px, 5.5vw, 72px);
+      font-weight: 100;
+      letter-spacing: var(--tracking-tight);
+      color: var(--black);
+      line-height: 1.0;
+      margin-bottom: 24px;
+    }
+
+    .hero-subheadline strong {
+      font-weight: 900;
+      display: block;
+    }
+
+    .hero-price {
+      display: flex;
+      align-items: baseline;
+      gap: 8px;
+      margin-bottom: 12px;
+    }
+
+    .price-amount {
+      font-size: clamp(42px, 6vw, 80px);
+      font-weight: 100;
+      letter-spacing: -0.03em;
+      line-height: 1;
+      color: var(--black);
+    }
+
+    .price-amount span {
+      font-size: 0.45em;
+      font-weight: 300;
+      vertical-align: super;
+      letter-spacing: 0;
+    }
+
+    .price-terms {
+      font-size: 13px;
+      font-weight: 300;
+      letter-spacing: var(--tracking-wide);
+      text-transform: uppercase;
+      color: var(--grey-dark);
+    }
+
+    .hero-description {
+      font-size: 15px;
+      font-weight: 300;
+      color: var(--grey-dark);
+      line-height: 1.7;
+      max-width: 380px;
+      margin-bottom: 48px;
+      letter-spacing: 0.02em;
+    }
+
+    .hero-actions {
+      display: flex;
+      gap: 20px;
+      align-items: center;
+      flex-wrap: wrap;
+    }
+
+    .btn-primary {
+      font-family: var(--font-brand);
+      font-size: 12px;
+      font-weight: 400;
+      letter-spacing: var(--tracking-wider);
+      text-transform: uppercase;
+      color: var(--white);
+      background: var(--black);
+      border: 1px solid var(--black);
+      padding: 16px 40px;
+      cursor: pointer;
+      transition: var(--transition-base);
+      display: inline-block;
+    }
+
+    .btn-primary:hover {
+      background: var(--grey-dark);
+      border-color: var(--grey-dark);
+    }
+
+    .btn-secondary {
+      font-family: var(--font-brand);
+      font-size: 12px;
+      font-weight: 400;
+      letter-spacing: var(--tracking-wider);
+      text-transform: uppercase;
+      color: var(--black);
+      background: transparent;
+      border: 1px solid var(--black);
+      padding: 16px 40px;
+      cursor: pointer;
+      transition: var(--transition-base);
+      display: inline-block;
+    }
+
+    .btn-secondary:hover {
+      background: var(--black);
+      color: var(--white);
+    }
+
+    .hero-visual {
+      position: relative;
+      z-index: 2;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      animation: fadeInRight 1.1s ease forwards;
+    }
+
+    .hero-car-img {
+      width: 100%;
+      max-width: 680px;
+      height: auto;
+      object-fit: contain;
+      filter: drop-shadow(0 20px 60px rgba(0,0,0,0.12));
+      transform: translateX(20px);
+    }
+
+    .hero-car-placeholder {
+      width: 100%;
+      max-width: 600px;
+      aspect-ratio: 16/9;
+      background: linear-gradient(135deg, #c8cacc 0%, #e4e6e9 40%, #b8babe 100%);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero-car-placeholder::before {
+      content: 'REVERO';
+      font-size: 10px;
+      font-weight: 900;
+      letter-spacing: 0.5em;
+      color: rgba(0,0,0,0.15);
+      position: absolute;
+      bottom: 20px;
+      left: 50%;
+      transform: translateX(-50%);
+    }
+
+    .placeholder-note {
+      font-size: 10px;
+      color: rgba(0,0,0,0.3);
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      text-align: center;
+      padding: 20px;
+    }
+
+    /* ============================================
+       OFFER MARQUEE STRIP
+       ============================================ */
+    .offer-strip {
+      background: var(--black);
+      color: var(--white);
+      padding: 18px 0;
+      overflow: hidden;
+      white-space: nowrap;
+    }
+
+    .offer-strip-inner {
+      display: inline-block;
+      animation: marquee 28s linear infinite;
+      font-size: 12px;
+      font-weight: 400;
+      letter-spacing: var(--tracking-wider);
+      text-transform: uppercase;
+    }
+
+    .offer-strip-inner span {
+      display: inline-block;
+      padding: 0 40px;
+    }
+
+    .offer-strip-inner .divider {
+      color: var(--taupe);
+      padding: 0 20px;
+    }
+
+    @keyframes marquee {
+      from { transform: translateX(0); }
+      to   { transform: translateX(-50%); }
+    }
+
+    /* ============================================
+       WHY LEASE SECTION
+       ============================================ */
+    .why-lease {
+      padding: 120px 60px;
+      background: var(--white);
+    }
+
+    .section-label {
+      font-size: 11px;
+      font-weight: 400;
+      letter-spacing: 0.35em;
+      text-transform: uppercase;
+      color: var(--taupe);
+      margin-bottom: 12px;
+    }
+
+    .section-title {
+      font-size: clamp(32px, 4.5vw, 58px);
+      font-weight: 100;
+      letter-spacing: var(--tracking-tight);
+      line-height: 1.1;
+      color: var(--black);
+      margin-bottom: 64px;
+    }
+
+    .section-title strong {
+      font-weight: 900;
+    }
+
+    .why-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 0;
+      border-left: 1px solid var(--grey-light);
+    }
+
+    .why-item {
+      padding: 48px 40px;
+      border-right: 1px solid var(--grey-light);
+      border-bottom: 1px solid var(--grey-light);
+      transition: var(--transition-base);
+      position: relative;
+    }
+
+    .why-item::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 0;
+      height: 2px;
+      background: var(--taupe);
+      transition: width 0.5s ease;
+    }
+
+    .why-item:hover::before {
+      width: 100%;
+    }
+
+    .why-number {
+      font-size: 11px;
+      font-weight: 400;
+      letter-spacing: 0.3em;
+      color: var(--taupe);
+      margin-bottom: 24px;
+    }
+
+    .why-icon {
+      width: 32px;
+      height: 1px;
+      background: var(--black);
+      margin-bottom: 24px;
+    }
+
+    .why-title {
+      font-size: 13px;
+      font-weight: 900;
+      letter-spacing: var(--tracking-wider);
+      text-transform: uppercase;
+      color: var(--black);
+      margin-bottom: 16px;
+      line-height: 1.4;
+    }
+
+    .why-text {
+      font-size: 15px;
+      font-weight: 300;
+      color: var(--grey-dark);
+      line-height: 1.75;
+      letter-spacing: 0.01em;
+    }
+
+    /* ============================================
+       LIFESTYLE IMAGE SHOWCASE
+       ============================================ */
+    .lifestyle-showcase {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 0;
+    }
+
+    .lifestyle-panel {
+      position: relative;
+      overflow: hidden;
+      aspect-ratio: 4/3;
+    }
+
+    .lifestyle-panel img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 1.2s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    }
+
+    .lifestyle-panel:hover img {
+      transform: scale(1.04);
+    }
+
+    .lifestyle-panel-overlay {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      padding: 40px;
+      background: linear-gradient(transparent, rgba(0,0,0,0.6));
+      pointer-events: none;
+    }
+
+    .lifestyle-panel-label {
+      font-size: 11px;
+      font-weight: 400;
+      letter-spacing: 0.35em;
+      text-transform: uppercase;
+      color: var(--taupe);
+      margin-bottom: 8px;
+    }
+
+    .lifestyle-panel-title {
+      font-size: clamp(18px, 2vw, 24px);
+      font-weight: 100;
+      color: var(--white);
+      letter-spacing: var(--tracking-tight);
+    }
+
+    .lifestyle-panel-title strong {
+      font-weight: 900;
+    }
+
+    .lifestyle-panel.full-width {
+      grid-column: 1 / -1;
+      aspect-ratio: 21/9;
+    }
+
+    @media (max-width: 900px) {
+      .lifestyle-showcase {
+        grid-template-columns: 1fr;
+      }
+
+      .lifestyle-panel {
+        aspect-ratio: 16/9;
+      }
+
+      .lifestyle-panel.full-width {
+        aspect-ratio: 16/9;
+      }
+    }
+
+    /* ============================================
+       REVERO SPECS HIGHLIGHT SECTION
+       ============================================ */
+    .specs-section {
+      padding: 120px 60px;
+      background: var(--black);
+      color: var(--white);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .specs-section::before {
+      content: 'REVERO';
+      position: absolute;
+      font-size: clamp(80px, 16vw, 220px);
+      font-weight: 900;
+      letter-spacing: -0.02em;
+      color: rgba(255,255,255,0.03);
+      bottom: -40px;
+      right: -20px;
+      line-height: 1;
+      pointer-events: none;
+    }
+
+    .specs-section .section-label {
+      color: var(--taupe);
+    }
+
+    .specs-section .section-title {
+      color: var(--white);
+    }
+
+    .specs-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 0;
+      border-left: 1px solid rgba(255,255,255,0.1);
+    }
+
+    .spec-item {
+      padding: 48px 32px;
+      border-right: 1px solid rgba(255,255,255,0.1);
+      border-bottom: 1px solid rgba(255,255,255,0.1);
+    }
+
+    .spec-value {
+      font-size: clamp(36px, 4vw, 58px);
+      font-weight: 100;
+      letter-spacing: -0.03em;
+      color: var(--white);
+      line-height: 1;
+      margin-bottom: 8px;
+    }
+
+    .spec-value sup {
+      font-size: 0.4em;
+      font-weight: 300;
+      vertical-align: super;
+    }
+
+    .spec-unit {
+      font-size: 13px;
+      font-weight: 400;
+      letter-spacing: var(--tracking-wide);
+      color: var(--taupe);
+      margin-bottom: 12px;
+      text-transform: uppercase;
+    }
+
+    .spec-label {
+      font-size: 12px;
+      font-weight: 300;
+      color: rgba(255,255,255,0.5);
+      letter-spacing: 0.1em;
+      line-height: 1.6;
+    }
+
+    /* ============================================
+       LEASE OFFER CALLOUT
+       ============================================ */
+    .lease-callout {
+      padding: 100px 60px;
+      background: var(--grey-light);
+      position: relative;
+    }
+
+    .lease-callout-inner {
+      max-width: 900px;
+      margin: 0 auto;
+      text-align: center;
+    }
+
+    .lease-callout-inner .taupe-rule {
+      margin: 0 auto 24px;
+    }
+
+    .offer-badge {
+      display: inline-block;
+      font-size: 11px;
+      font-weight: 400;
+      letter-spacing: 0.35em;
+      text-transform: uppercase;
+      color: var(--taupe);
+      border: 1px solid var(--taupe);
+      padding: 8px 20px;
+      margin-bottom: 40px;
+    }
+
+    .offer-big-price {
+      font-size: clamp(52px, 9vw, 120px);
+      font-weight: 100;
+      letter-spacing: -0.04em;
+      line-height: 1;
+      color: var(--black);
+      margin-bottom: 16px;
+    }
+
+    .offer-big-price sup {
+      font-size: 0.3em;
+      font-weight: 300;
+      vertical-align: super;
+      letter-spacing: 0;
+    }
+
+    .offer-terms-line {
+      font-size: 13px;
+      font-weight: 400;
+      letter-spacing: var(--tracking-wider);
+      text-transform: uppercase;
+      color: var(--grey-cool);
+      margin-bottom: 48px;
+    }
+
+    .offer-detail-list {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 32px;
+      margin-bottom: 56px;
+      text-align: left;
+    }
+
+    .offer-detail-item {
+      padding: 24px;
+      background: var(--white);
+      border-top: 2px solid var(--taupe);
+    }
+
+    .offer-detail-label {
+      font-size: 11px;
+      font-weight: 400;
+      letter-spacing: 0.3em;
+      text-transform: uppercase;
+      color: var(--taupe);
+      margin-bottom: 8px;
+    }
+
+    .offer-detail-value {
+      font-size: 20px;
+      font-weight: 300;
+      color: var(--black);
+      letter-spacing: -0.01em;
+    }
+
+    .offer-detail-sub {
+      font-size: 13px;
+      font-weight: 300;
+      color: var(--grey-cool);
+      margin-top: 4px;
+    }
+
+    .offer-expires {
+      font-size: 12px;
+      font-weight: 300;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--grey-cool);
+      margin-top: 16px;
+    }
+
+    .offer-expires strong {
+      color: var(--black);
+      font-weight: 400;
+    }
+
+    /* ============================================
+       CONTACT / LEARN MORE SECTION
+       ============================================ */
+    .contact-section {
+      padding: 120px 60px;
+      background: var(--white);
+      position: relative;
+    }
+
+    .contact-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 100px;
+      max-width: 1200px;
+      margin: 0 auto;
+      align-items: start;
+    }
+
+    .contact-left .section-title {
+      margin-bottom: 24px;
+    }
+
+    .contact-left p {
+      font-size: 15px;
+      font-weight: 300;
+      color: var(--grey-dark);
+      line-height: 1.8;
+      margin-bottom: 16px;
+    }
+
+    .contact-left .contact-details {
+      margin-top: 48px;
+    }
+
+    .contact-detail-item {
+      padding: 20px 0;
+      border-top: 1px solid var(--grey-light);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .contact-detail-item:last-child {
+      border-bottom: 1px solid var(--grey-light);
+    }
+
+    .contact-detail-label {
+      font-size: 11px;
+      font-weight: 400;
+      letter-spacing: 0.3em;
+      text-transform: uppercase;
+      color: var(--taupe);
+    }
+
+    .contact-detail-value {
+      font-size: 15px;
+      font-weight: 300;
+      color: var(--black);
+    }
+
+    /* CONTACT FORM */
+    .contact-form-wrap {
+      background: var(--white);
+      border: 1px solid var(--grey-light);
+      padding: 48px;
+      position: relative;
+    }
+
+    .contact-form-wrap::before,
+    .contact-form-wrap::after,
+    .contact-form-wrap .form-br,
+    .contact-form-wrap .form-bl {
+      content: '';
+      position: absolute;
+      width: 24px;
+      height: 24px;
+    }
+
+    .contact-form-wrap::before {
+      top: 12px; left: 12px;
+      border-top: 1px solid var(--taupe);
+      border-left: 1px solid var(--taupe);
+    }
+
+    .contact-form-wrap::after {
+      top: 12px; right: 12px;
+      border-top: 1px solid var(--taupe);
+      border-right: 1px solid var(--taupe);
+    }
+
+    .contact-form-wrap .form-br {
+      bottom: 12px; right: 12px;
+      border-bottom: 1px solid var(--taupe);
+      border-right: 1px solid var(--taupe);
+    }
+
+    .contact-form-wrap .form-bl {
+      bottom: 12px; left: 12px;
+      border-bottom: 1px solid var(--taupe);
+      border-left: 1px solid var(--taupe);
+    }
+
+    .form-title {
+      font-size: 13px;
+      font-weight: 900;
+      letter-spacing: var(--tracking-wider);
+      text-transform: uppercase;
+      color: var(--black);
+      margin-bottom: 32px;
+    }
+
+    .form-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 16px;
+      margin-bottom: 16px;
+    }
+
+    .form-group {
+      margin-bottom: 16px;
+    }
+
+    .form-group label {
+      display: block;
+      font-size: 11px;
+      font-weight: 400;
+      letter-spacing: 0.3em;
+      text-transform: uppercase;
+      color: var(--grey-cool);
+      margin-bottom: 8px;
+    }
+
+    .form-group input,
+    .form-group select,
+    .form-group textarea {
+      width: 100%;
+      font-family: var(--font-brand);
+      font-size: 15px;
+      font-weight: 300;
+      color: var(--black);
+      background: var(--white);
+      border: none;
+      border-bottom: 1px solid var(--grey-light);
+      padding: 12px 0;
+      outline: none;
+      transition: border-color var(--transition-base);
+      appearance: none;
+      -webkit-appearance: none;
+    }
+
+    .form-group input:focus,
+    .form-group select:focus,
+    .form-group textarea:focus {
+      border-bottom-color: var(--black);
+    }
+
+    .form-group select {
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='10' height='6'%3E%3Cpath d='M0 0l5 6 5-6z' fill='%23000'/%3E%3C/svg%3E");
+      background-repeat: no-repeat;
+      background-position: right 4px center;
+      cursor: pointer;
+    }
+
+    .form-group textarea {
+      resize: none;
+      height: 80px;
+    }
+
+    .form-group input::placeholder,
+    .form-group textarea::placeholder {
+      color: var(--grey-cool);
+      font-weight: 300;
+    }
+
+    .form-consent {
+      font-size: 12px;
+      font-weight: 300;
+      color: var(--grey-cool);
+      line-height: 1.6;
+      margin-bottom: 28px;
+      display: flex;
+      gap: 12px;
+      align-items: flex-start;
+    }
+
+    .form-consent input[type="checkbox"] {
+      width: 14px;
+      height: 14px;
+      margin-top: 2px;
+      flex-shrink: 0;
+      accent-color: var(--black);
+    }
+
+    .btn-form-submit {
+      font-family: var(--font-brand);
+      font-size: 12px;
+      font-weight: 400;
+      letter-spacing: var(--tracking-wider);
+      text-transform: uppercase;
+      color: var(--white);
+      background: var(--black);
+      border: 1px solid var(--black);
+      padding: 16px 48px;
+      cursor: pointer;
+      transition: var(--transition-base);
+      width: 100%;
+    }
+
+    .btn-form-submit:hover {
+      background: var(--grey-dark);
+      border-color: var(--grey-dark);
+    }
+
+    .form-success {
+      display: none;
+      text-align: center;
+      padding: 60px 20px;
+    }
+
+    .form-success.visible {
+      display: block;
+    }
+
+    .form-success-icon {
+      width: 48px;
+      height: 48px;
+      border: 1px solid var(--taupe);
+      border-radius: 0;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 24px;
+    }
+
+    .form-success h3 {
+      font-size: 15px;
+      font-weight: 900;
+      letter-spacing: var(--tracking-wider);
+      text-transform: uppercase;
+      margin-bottom: 12px;
+    }
+
+    .form-success p {
+      font-size: 15px;
+      font-weight: 300;
+      color: var(--grey-dark);
+    }
+
+    /* ============================================
+       RETAILER STRIP
+       ============================================ */
+    .retailer-strip {
+      background: var(--black);
+      color: var(--white);
+      padding: 80px 60px;
+      text-align: center;
+    }
+
+    .retailer-strip .section-label {
+      color: var(--taupe);
+      margin-bottom: 24px;
+    }
+
+    .retailer-strip h2 {
+      font-size: clamp(22px, 3vw, 38px);
+      font-weight: 100;
+      letter-spacing: var(--tracking-tight);
+      margin-bottom: 40px;
+    }
+
+    .retailer-strip h2 strong {
+      font-weight: 900;
+    }
+
+    .btn-ghost-white {
+      font-family: var(--font-brand);
+      font-size: 12px;
+      font-weight: 400;
+      letter-spacing: var(--tracking-wider);
+      text-transform: uppercase;
+      color: var(--white);
+      background: transparent;
+      border: 1px solid rgba(255,255,255,0.4);
+      padding: 16px 48px;
+      cursor: pointer;
+      transition: var(--transition-base);
+      display: inline-block;
+    }
+
+    .btn-ghost-white:hover {
+      background: var(--white);
+      color: var(--black);
+      border-color: var(--white);
+    }
+
+    /* ============================================
+       FINE PRINT
+       ============================================ */
+    .fine-print {
+      padding: 64px 60px;
+      background: var(--grey-light);
+      border-top: 1px solid rgba(0,0,0,0.08);
+    }
+
+    .fine-print-rule {
+      width: 60px;
+      height: 1px;
+      background: var(--taupe);
+      margin-bottom: 24px;
+    }
+
+    .fine-print p {
+      font-size: 12px;
+      font-weight: 300;
+      color: var(--grey-cool);
+      line-height: 1.9;
+      max-width: 1000px;
+      letter-spacing: 0.02em;
+    }
+
+    .fine-print-asterisk {
+      font-size: 11px;
+      font-weight: 400;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--taupe);
+      margin-bottom: 12px;
+      display: block;
+    }
+
+    /* ============================================
+       FOOTER
+       ============================================ */
+    .site-footer {
+      background: var(--black);
+      color: var(--white);
+      padding: 48px 60px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 24px;
+    }
+
+    .footer-logo-text {
+      font-size: 14px;
+      font-weight: 900;
+      letter-spacing: var(--tracking-wider);
+      text-transform: uppercase;
+    }
+
+    .footer-links {
+      display: flex;
+      gap: 32px;
+      flex-wrap: wrap;
+    }
+
+    .footer-links a {
+      font-size: 11px;
+      font-weight: 300;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.4);
+      transition: color var(--transition-base);
+    }
+
+    .footer-links a:hover {
+      color: var(--white);
+    }
+
+    .footer-copy {
+      font-size: 11px;
+      font-weight: 300;
+      color: rgba(255,255,255,0.3);
+      letter-spacing: 0.1em;
+    }
+
+    /* ============================================
+       VIDEO MODAL
+       ============================================ */
+    .video-modal-overlay {
+      position: fixed;
+      inset: 0;
+      z-index: 9999;
+      background: rgba(0, 0, 0, 0.88);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      opacity: 1;
+      transition: opacity 0.4s ease;
+      backdrop-filter: blur(6px);
+      -webkit-backdrop-filter: blur(6px);
+    }
+
+    .video-modal-overlay.hidden {
+      opacity: 0;
+      pointer-events: none;
+    }
+
+    .video-modal {
+      position: relative;
+      width: 90%;
+      max-width: 900px;
+      aspect-ratio: 16/9;
+      background: #000;
+    }
+
+    .video-modal iframe {
+      width: 100%;
+      height: 100%;
+      border: none;
+      
+    }
+
+    .video-click-guard {
+      position: absolute;
+      inset: 0;
+      z-index: 1;
+      cursor: default;
+    }
+
+    .video-modal-close {
+      position: absolute;
+      top: -48px;
+      right: 0;
+      background: none;
+      border: 1px solid rgba(255,255,255,0.3);
+      color: var(--white);
+      font-family: var(--font-brand);
+      font-size: 11px;
+      font-weight: 400;
+      letter-spacing: var(--tracking-wider);
+      text-transform: uppercase;
+      padding: 10px 24px;
+      cursor: pointer;
+      transition: var(--transition-base);
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .video-modal-close:hover {
+      background: var(--white);
+      color: var(--black);
+      border-color: var(--white);
+    }
+
+    .video-modal-close svg {
+      width: 14px;
+      height: 14px;
+    }
+
+    .video-modal-label {
+      position: absolute;
+      bottom: -40px;
+      left: 0;
+      font-size: 11px;
+      font-weight: 300;
+      letter-spacing: var(--tracking-wide);
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.4);
+    }
+
+    @keyframes modalFadeIn {
+      from { opacity: 0; }
+      to   { opacity: 1; }
+    }
+
+    /* ============================================
+       SCROLL ANIMATIONS
+       ============================================ */
+    @keyframes fadeInLeft {
+      from { opacity: 0; transform: translateX(-30px); }
+      to   { opacity: 1; transform: translateX(0); }
+    }
+
+    @keyframes fadeInRight {
+      from { opacity: 0; transform: translateX(30px); }
+      to   { opacity: 1; transform: translateX(0); }
+    }
+
+    @keyframes fadeInUp {
+      from { opacity: 0; transform: translateY(20px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+
+    .reveal {
+      opacity: 0;
+      transform: translateY(20px);
+      transition: opacity 0.7s ease, transform 0.7s ease;
+    }
+
+    .reveal.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .reveal-delay-1 { transition-delay: 0.1s; }
+    .reveal-delay-2 { transition-delay: 0.2s; }
+    .reveal-delay-3 { transition-delay: 0.3s; }
+    .reveal-delay-4 { transition-delay: 0.4s; }
+    .reveal-delay-5 { transition-delay: 0.5s; }
+
+    /* ============================================
+       RESPONSIVE
+       ============================================ */
+    @media (max-width: 1100px) {
+      .specs-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
+
+    @media (max-width: 900px) {
+      .hero {
+        grid-template-columns: 1fr;
+        padding: 120px 32px 60px;
+        gap: 48px;
+      }
+
+      .hero-visual {
+        order: -1;
+      }
+
+      .hero-car-img {
+        transform: none;
+      }
+
+      .why-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .offer-detail-list {
+        grid-template-columns: 1fr;
+      }
+
+      .contact-grid {
+        grid-template-columns: 1fr;
+        gap: 60px;
+      }
+
+      .why-lease,
+      .specs-section,
+      .lease-callout,
+      .contact-section,
+      .fine-print {
+        padding: 80px 32px;
+      }
+
+      .site-nav {
+        padding: 16px 24px;
+      }
+
+      .site-footer {
+        flex-direction: column;
+        align-items: flex-start;
+        padding: 40px 32px;
+      }
+    }
+
+    @media (max-width: 600px) {
+      .form-row {
+        grid-template-columns: 1fr;
+      }
+
+      .specs-grid {
+        grid-template-columns: 1fr 1fr;
+      }
+
+      .contact-form-wrap {
+        padding: 32px 24px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- VIDEO MODAL — auto-shows on page load -->
+  <div class="video-modal-overlay hidden" id="videoModal">
+    <div class="video-modal">
+      <button class="video-modal-close" onclick="closeVideoModal()">
+        <span>Close</span>
+        <svg viewBox="0 0 14 14" fill="none"><path d="M1 1l12 12M13 1L1 13" stroke="currentColor" stroke-width="1.2"/></svg>
+      </button>
+      <iframe
+        id="videoIframe"
+        src=""
+        allow="autoplay; encrypted-media"
+        allowfullscreen
+        title="Karma Revero"
+      ></iframe>
+      <div class="video-click-guard"></div>
+      <span class="video-modal-label">Karma Revero — Experience the Drive</span>
+    </div>
+  </div>
+
+  <!-- NAVIGATION -->
+  <nav class="site-nav" id="siteNav">
+    <a href="#" class="nav-logo-text" onclick="window.scrollTo({top:0,behavior:'smooth'});return false;">KARMA</a>
+    <a href="#learn-more" class="nav-cta">Learn More</a>
+  </nav>
+
+  <!-- HERO -->
+  <section class="hero">
+    <div class="hero-content">
+      <span class="hero-eyebrow">Only 160 Exist Worldwide · Limited Offer</span>
+      <span class="hero-wordmark">KARMA</span>
+
+      <p class="hero-headline">More Than a Car. A Conversation Starter.</p>
+
+      <h1 class="hero-subheadline">
+        Lease a<br>
+        <strong>REVERO.</strong>
+      </h1>
+
+      <div class="hero-price">
+        <div class="price-amount"><span>$</span>1,297</div>
+        <div class="price-terms">/ Month<br>for 36 Months*</div>
+      </div>
+
+      <p class="hero-description">
+        536 hp. 550 lb-ft of torque. 0–60 in 4.5 seconds. Three drive modes — Stealth, Sustain, Sport. Bridge of Weir leather, 3D haptic touch controls, and a fully digital cockpit. This is American ultra-luxury, redefined.
+      </p>
+
+      <div class="hero-actions">
+        <a href="#learn-more" class="btn-primary">Learn More</a>
+        <a href="#learn-more" class="btn-secondary">Find a Retailer</a>
+        <button class="btn-secondary" onclick="openVideoModal()" style="background:none;cursor:pointer;">
+          <svg viewBox="0 0 20 20" fill="currentColor" style="width:14px;height:14px;vertical-align:middle;margin-right:6px;"><polygon points="4,2 18,10 4,18"/></svg>Watch Film
+        </button>
+      </div>
+    </div>
+
+    <div class="hero-visual">
+      <img class="hero-car-img" src="img/hero-desert.png" alt="2025 Karma Revero — Grand Touring, Redefined" />
+    </div>
+  </section>
+
+  <!-- OFFER STRIP MARQUEE -->
+  <div class="offer-strip" aria-hidden="true">
+    <div class="offer-strip-inner">
+      <span>$1,297 / Month</span><span class="divider">—</span>
+      <span>36 Month Lease</span><span class="divider">—</span>
+      <span>15,000 Miles / Year</span><span class="divider">—</span>
+      <span>Offer Ends March 31, 2026</span><span class="divider">—</span>
+      <span>All 2025 Legacy Models Qualify</span><span class="divider">—</span>
+      <span>No Security Deposit Required</span><span class="divider">—</span>
+      <span>$1,297 / Month</span><span class="divider">—</span>
+      <span>36 Month Lease</span><span class="divider">—</span>
+      <span>15,000 Miles / Year</span><span class="divider">—</span>
+      <span>Offer Ends March 31, 2026</span><span class="divider">—</span>
+      <span>All 2025 Legacy Models Qualify</span><span class="divider">—</span>
+      <span>No Security Deposit Required</span><span class="divider">—</span>
+    </div>
+  </div>
+
+  <!-- WHY LEASE -->
+  <section class="why-lease">
+    <p class="section-label reveal">The Art of Choice</p>
+    <h2 class="section-title reveal reveal-delay-1">Unlock the<br><strong>Karma Lifestyle.</strong></h2>
+
+    <div class="why-grid">
+      <div class="why-item reveal">
+        <p class="why-number">01</p>
+        <div class="why-icon"></div>
+        <h3 class="why-title">Whisper-Quiet Power</h3>
+        <p class="why-text">Silent mornings at the café. Effortless arrivals that turn every valet into a moment. The Revero moves in pure electric stealth — 536 hp with nothing but the wind to announce you.</p>
+      </div>
+      <div class="why-item reveal reveal-delay-1">
+        <p class="why-number">02</p>
+        <div class="why-icon"></div>
+        <h3 class="why-title">Interior Craftsmanship</h3>
+        <p class="why-text">Bridge of Weir leather. 3D haptic touch controls. A fully digital cockpit that surrounds you with intention. Every surface, every stitch — handcrafted in Moreno Valley, California.</p>
+      </div>
+      <div class="why-item reveal reveal-delay-2">
+        <p class="why-number">03</p>
+        <div class="why-icon"></div>
+        <h3 class="why-title">Spontaneous Coastal Escapes</h3>
+        <p class="why-text">Over 360 miles of combined range means the weekend starts when you want it to. No range anxiety. No compromises. Just the open road and 550 lb-ft of instant torque.</p>
+      </div>
+      <div class="why-item reveal reveal-delay-1">
+        <p class="why-number">04</p>
+        <div class="why-icon"></div>
+        <h3 class="why-title">Three Modes, One Soul</h3>
+        <p class="why-text">Stealth mode for silent, electric-only cruising. Sustain for extended journeys. Sport for the moments that demand all 536 horses. The Revero adapts to every drive — and every mood.</p>
+      </div>
+      <div class="why-item reveal reveal-delay-2">
+        <p class="why-number">05</p>
+        <div class="why-icon"></div>
+        <h3 class="why-title">The Karma Circle</h3>
+        <p class="why-text">Only 160 exist globally. Karma Circle membership grants you exclusive event access, private experiences, and entry into a community of collectors who understand that rarity is the ultimate luxury.</p>
+      </div>
+      <div class="why-item reveal reveal-delay-3">
+        <p class="why-number">06</p>
+        <div class="why-icon"></div>
+        <h3 class="why-title">Up to $35K in Incentives</h3>
+        <p class="why-text">Federal and state incentives of up to $35,000 make the Revero more attainable than ever. Combined with our lease offer, this is the moment to experience American ultra-luxury at its finest.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- LIFESTYLE SHOWCASE -->
+  <section class="lifestyle-showcase">
+    <div class="lifestyle-panel reveal">
+      <img src="img/lifestyle-coastal.jpg" alt="Karma Revero — Coastal Presence" loading="lazy" />
+      <div class="lifestyle-panel-overlay">
+        <p class="lifestyle-panel-label">The Arrival</p>
+        <p class="lifestyle-panel-title">Every valet becomes <strong>a moment.</strong></p>
+      </div>
+    </div>
+    <div class="lifestyle-panel reveal reveal-delay-1">
+      <img src="img/performance-motion.jpg" alt="Karma Revero — Performance in Motion" loading="lazy" />
+      <div class="lifestyle-panel-overlay">
+        <p class="lifestyle-panel-label">The Drive</p>
+        <p class="lifestyle-panel-title">536 hp. <strong>Zero noise.</strong></p>
+      </div>
+    </div>
+    <div class="lifestyle-panel full-width reveal reveal-delay-2">
+      <img src="img/hero-canyon.png" alt="Karma Revero — Canyon Road" loading="lazy" />
+      <div class="lifestyle-panel-overlay">
+        <p class="lifestyle-panel-label">Grand Touring, Redefined</p>
+        <p class="lifestyle-panel-title">$1,297/mo · <strong>36 months · $5,142 due at signing</strong></p>
+      </div>
+    </div>
+  </section>
+
+  <!-- SPECS -->
+  <section class="specs-section">
+    <p class="section-label reveal">Freedom Redefined</p>
+    <h2 class="section-title reveal reveal-delay-1">The Numbers<br><strong>Speak.</strong></h2>
+
+    <div class="specs-grid">
+      <div class="spec-item reveal">
+        <div class="spec-value">536</div>
+        <div class="spec-unit">HP Combined</div>
+        <div class="spec-label">Dual electric motors with 550 lb-ft of instant torque</div>
+      </div>
+      <div class="spec-item reveal reveal-delay-1">
+        <div class="spec-value">360<sup>+</sup></div>
+        <div class="spec-unit">Miles Range</div>
+        <div class="spec-label">EREV architecture — the weekend starts when you want it to</div>
+      </div>
+      <div class="spec-item reveal reveal-delay-2">
+        <div class="spec-value">4.5</div>
+        <div class="spec-unit">Sec 0–60 MPH</div>
+        <div class="spec-label">From silent café mornings to canyon-carving weekends</div>
+      </div>
+      <div class="spec-item reveal reveal-delay-3">
+        <div class="spec-value">3</div>
+        <div class="spec-unit">Drive Modes</div>
+        <div class="spec-label">Stealth · Sustain · Sport — adapt to every road, every mood</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- DESIGN SHOWCASE -->
+  <section class="lifestyle-showcase">
+    <div class="lifestyle-panel full-width reveal">
+      <img src="img/design-topdown.jpg" alt="Karma Revero — Design from Above" loading="lazy" />
+      <div class="lifestyle-panel-overlay">
+        <p class="lifestyle-panel-label">Designed, Engineered & Built in America</p>
+        <p class="lifestyle-panel-title">The first ultra-luxury EV <strong>made in California.</strong></p>
+      </div>
+    </div>
+  </section>
+
+  <!-- LEASE CALLOUT / OFFER DETAILS -->
+  <section class="lease-callout">
+    <div class="lease-callout-inner karma-frame">
+      <div class="frame-br"></div>
+      <div class="frame-bl"></div>
+
+      <div class="offer-badge">Limited Time Offer · Ends March 31, 2026</div>
+
+      <p class="section-label">Closed-End Lease · Karma Leasing powered by LLP</p>
+
+      <div class="offer-big-price"><sup>$</sup>1,297<span style="font-size:0.3em;font-weight:300;letter-spacing:0"> /mo</span></div>
+      <p class="offer-terms-line">For 36 Months · All 2025 Karma Legacy Models Qualify</p>
+
+      <div class="offer-detail-list">
+        <div class="offer-detail-item reveal">
+          <p class="offer-detail-label">MSRP</p>
+          <p class="offer-detail-value">$125,599</p>
+          <p class="offer-detail-sub">Starting vehicle price</p>
+        </div>
+        <div class="offer-detail-item reveal reveal-delay-1">
+          <p class="offer-detail-label">Due at Signing</p>
+          <p class="offer-detail-value">$15,351</p>
+          <p class="offer-detail-sub">Incl. cap cost reduction, acq. fee &amp; first month</p>
+        </div>
+        <div class="offer-detail-item reveal reveal-delay-2">
+          <p class="offer-detail-label">Mileage Allowance</p>
+          <p class="offer-detail-value">15,000 mi/yr</p>
+          <p class="offer-detail-sub">$2.50/mi overage · No security deposit</p>
+        </div>
+      </div>
+
+      <a href="#learn-more" class="btn-primary">Request More Information</a>
+      <p class="offer-expires">Offer expires <strong>March 31, 2026</strong>. See participating dealer for complete details.</p>
+    </div>
+  </section>
+
+  <!-- LEARN MORE / CONTACT FORM -->
+  <section class="contact-section" id="learn-more">
+    <div class="contact-grid">
+
+      <div class="contact-left">
+        <p class="section-label reveal">Be Part of Karma</p>
+        <h2 class="section-title reveal reveal-delay-1">
+          Claim Your<br><strong>Invitation.</strong>
+        </h2>
+        <p class="reveal reveal-delay-2">
+          This isn't just a test drive — it's a private experience. Submit your information and a Karma representative will arrange a personalized introduction to the Revero, including a guided drive experience at your nearest retailer.
+        </p>
+        <p class="reveal reveal-delay-3">
+          With only 160 produced globally, every Revero is spoken for quickly. We recommend acting now to secure your preferred configuration and join the Karma Circle.
+        </p>
+
+        <div class="contact-details reveal reveal-delay-4">
+          <div class="contact-detail-item">
+            <span class="contact-detail-label">Offer Valid Through</span>
+            <span class="contact-detail-value">March 31, 2026</span>
+          </div>
+          <div class="contact-detail-item">
+            <span class="contact-detail-label">Find a Retailer</span>
+            <span class="contact-detail-value">
+              <a href="#learn-more" style="border-bottom:1px solid var(--taupe);">Submit Form Below →</a>
+            </span>
+          </div>
+          <div class="contact-detail-item">
+            <span class="contact-detail-label">Eligible Vehicles</span>
+            <span class="contact-detail-value">All 2025 Legacy Models</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="contact-right reveal reveal-delay-2">
+        <div class="contact-form-wrap">
+          <div class="form-br"></div>
+          <div class="form-bl"></div>
+
+          <p class="form-title">Request Information</p>
+
+          <div id="contactForm">
+            <div class="form-row">
+              <div class="form-group">
+                <label for="firstName">First Name *</label>
+                <input type="text" id="firstName" name="firstName" placeholder="First Name" required />
+              </div>
+              <div class="form-group">
+                <label for="lastName">Last Name *</label>
+                <input type="text" id="lastName" name="lastName" placeholder="Last Name" required />
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label for="email">Email Address *</label>
+              <input type="email" id="email" name="email" placeholder="your@email.com" required />
+            </div>
+
+            <div class="form-group">
+              <label for="phone">Phone Number</label>
+              <input type="tel" id="phone" name="phone" placeholder="(000) 000-0000" />
+            </div>
+
+            <div class="form-group">
+              <label for="zip">ZIP Code</label>
+              <input type="text" id="zip" name="zip" placeholder="Enter your ZIP" maxlength="10" />
+            </div>
+
+            <div class="form-group">
+              <label for="interest">I Am Interested In</label>
+              <select id="interest" name="interest">
+                <option value="">Select an option</option>
+                <option value="lease-offer">The $1,297/mo Lease Offer</option>
+                <option value="test-drive">Scheduling a Test Drive</option>
+                <option value="inventory">Viewing Available Inventory</option>
+                <option value="general">General Information</option>
+              </select>
+            </div>
+
+            <div class="form-group">
+              <label for="message">Additional Questions</label>
+              <textarea id="message" name="message" placeholder="How can we help you?"></textarea>
+            </div>
+
+            <div class="form-consent">
+              <input type="checkbox" id="consent" name="consent" />
+              <label for="consent">By submitting this form, I consent to being contacted by a Karma Automotive retailer regarding this lease offer and available inventory. I may opt out at any time.</label>
+            </div>
+
+            <button type="button" class="btn-form-submit" onclick="handleFormSubmit()">
+              Submit Request
+            </button>
+          </div>
+
+          <div class="form-success" id="formSuccess">
+            <div class="form-success-icon">
+              <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
+                <path d="M4 10l4 4 8-8" stroke="#b1a699" stroke-width="1.5" stroke-linecap="square"/>
+              </svg>
+            </div>
+            <h3>Request Received</h3>
+            <p>A Karma representative will be in touch within one business day to assist with your lease inquiry.</p>
+          </div>
+
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- RETAILER CTA -->
+  <section class="retailer-strip">
+    <p class="section-label">Start Your Experience Today</p>
+    <h2>The Revero Is Waiting.<br><strong>Are You?</strong></h2>
+    <a href="#learn-more" class="btn-ghost-white">Request Information</a>
+  </section>
+
+  <!-- FINE PRINT -->
+  <section class="fine-print">
+    <div class="fine-print-rule"></div>
+    <span class="fine-print-asterisk">* Lease Disclosure</span>
+    <p>
+      Closed-end lease available only to qualified customers through Karma Leasing powered by LLP at participating dealers through March 31, 2026. Karma Automotive, Inc. does not offer or negotiate leases. Offer available only where permitted by law and subject to dealer participation and regional availability. Not everyone will qualify. Advertised 36-month lease payment based on MSRP of $125,599 less the suggested dealer contribution of $10,048 resulting in a total gross capitalized cost of $115,551. Dealer sets the final price and Dealer's contribution may vary and could affect your actual lease payment. Includes Destination Charge. Excludes title, taxes, registration, license fees, insurance, and additional options. Total monthly payments equal $46,692. Amount due at signing includes $12,559 capitalized cost reduction, $1,495 acquisition fee and first month lease payment of $1,297, plus tax and license. No security deposit required. At lease end, lessee pays any amounts due under the lease, any official fees and taxes related to the scheduled termination, excess wear and use plus $2.50/mile over 15,000 miles, and vehicle turn-in fee. Purchase option at lease end for $75,360 plus taxes (and any other fees and charges due under the applicable lease agreement) in example shown. Subject to credit approval. Specific vehicles are subject to availability and may have to be ordered. See participating dealer for details. All 2025 Karma Legacy models qualify.
+    </p>
+  </section>
+
+  <!-- FOOTER -->
+  <footer class="site-footer">
+    <span class="footer-logo-text">KARMA</span>
+    <div class="footer-links">
+      <a href="#learn-more">Revero</a>
+      <a href="#learn-more">Contact</a>
+      <a href="#learn-more">Request Info</a>
+    </div>
+    <span class="footer-copy">&copy; Karma Automotive, Inc. All rights reserved.</span>
+  </footer>
+
+  <script>
+    // Video modal
+    const VIDEO_SRC = 'https://www.youtube-nocookie.com/embed/eGBTt9PxoPA?autoplay=1&mute=1&rel=0&modestbranding=1&showinfo=0&controls=0';
+
+    function openVideoModal() {
+      const modal = document.getElementById('videoModal');
+      const iframe = document.getElementById('videoIframe');
+      iframe.src = VIDEO_SRC;
+      modal.classList.remove('hidden');
+    }
+
+    function closeVideoModal() {
+      const modal = document.getElementById('videoModal');
+      const iframe = document.getElementById('videoIframe');
+      modal.classList.add('hidden');
+      iframe.src = ''; // stop playback
+    }
+
+    // Close on overlay click (outside the video)
+    document.getElementById('videoModal').addEventListener('click', function(e) {
+      if (e.target === this) closeVideoModal();
+    });
+
+    // Close on Escape key
+    document.addEventListener('keydown', function(e) {
+      if (e.key === 'Escape') closeVideoModal();
+    });
+
+    const nav = document.getElementById('siteNav');
+    window.addEventListener('scroll', () => {
+      nav.classList.toggle('scrolled', window.scrollY > 60);
+    });
+
+    const revealEls = document.querySelectorAll('.reveal');
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(el => {
+        if (el.isIntersecting) {
+          el.target.classList.add('visible');
+          observer.unobserve(el.target);
+        }
+      });
+    }, { threshold: 0.12 });
+    revealEls.forEach(el => observer.observe(el));
+
+    function handleFormSubmit() {
+      const firstName = document.getElementById('firstName').value.trim();
+      const lastName  = document.getElementById('lastName').value.trim();
+      const email     = document.getElementById('email').value.trim();
+      const consent   = document.getElementById('consent').checked;
+
+      if (!firstName || !lastName || !email) {
+        alert('Please fill in your first name, last name, and email address.');
+        return;
+      }
+
+      if (!email.match(/^[^\s@]+@[^\s@]+\.[^\s@]+$/)) {
+        alert('Please enter a valid email address.');
+        return;
+      }
+
+      if (!consent) {
+        alert('Please check the consent box to proceed.');
+        return;
+      }
+
+      document.getElementById('contactForm').style.display = 'none';
+      const success = document.getElementById('formSuccess');
+      success.classList.add('visible');
+      success.style.display = 'block';
+    }
+  </script>
+
+</body>
+</html>
