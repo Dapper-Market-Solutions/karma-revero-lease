@@ -192,13 +192,10 @@
       width: auto;
     }
 
-    .nav-logo-text {
-      font-family: var(--font-brand);
-      font-weight: 900;
-      font-size: 22px;
-      letter-spacing: var(--tracking-wider);
-      color: var(--black);
-      text-transform: uppercase;
+    .nav-logo-img {
+      height: 20px;
+      width: auto;
+      display: block;
     }
 
     .nav-cta {
@@ -1255,11 +1252,11 @@
       gap: 24px;
     }
 
-    .footer-logo-text {
-      font-size: 14px;
-      font-weight: 900;
-      letter-spacing: var(--tracking-wider);
-      text-transform: uppercase;
+    .footer-logo-img {
+      height: 16px;
+      width: auto;
+      display: block;
+      filter: invert(1);
     }
 
     .footer-links {
@@ -1635,7 +1632,7 @@
 
   <!-- NAVIGATION -->
   <nav class="site-nav" id="siteNav">
-    <a href="#" class="nav-logo-text" onclick="window.scrollTo({top:0,behavior:'smooth'});return false;">KARMA</a>
+    <a href="#" onclick="window.scrollTo({top:0,behavior:'smooth'});return false;"><img class="nav-logo-img" src="img/KARMA_LOGOTYPE_BLACK.png" alt="Karma Automotive" /></a>
     <a href="#learn-more" class="nav-cta">Learn More</a>
   </nav>
 
@@ -1982,7 +1979,7 @@
 
   <!-- FOOTER -->
   <footer class="site-footer">
-    <span class="footer-logo-text">KARMA</span>
+    <img class="footer-logo-img" src="img/KARMA_LOGOTYPE_BLACK.png" alt="Karma Automotive" />
     <div class="footer-links">
       <a href="#learn-more">Revero</a>
       <a href="#learn-more">Contact</a>
