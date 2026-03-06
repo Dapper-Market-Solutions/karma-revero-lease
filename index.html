@@ -631,7 +631,14 @@
       }
 
       .lifestyle-panel.full-width {
-        aspect-ratio: 4/3;
+        aspect-ratio: auto;
+        background: var(--black);
+      }
+
+      .lifestyle-panel.full-width img {
+        object-fit: contain;
+        width: 100%;
+        height: auto;
       }
     }
 
