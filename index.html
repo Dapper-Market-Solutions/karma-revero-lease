@@ -2111,14 +2111,17 @@
     }, { threshold: 0.12 });
     revealEls.forEach(el => observer.observe(el));
 
-    function handleFormSubmit() {
+    async function handleFormSubmit() {
       const firstName = document.getElementById('firstName').value.trim();
       const lastName  = document.getElementById('lastName').value.trim();
       const email     = document.getElementById('email').value.trim();
+      const phone     = document.getElementById('phone').value.trim();
+      const zip       = document.getElementById('zip').value.trim();
+      const interest  = document.getElementById('interest').value;
       const consent   = document.getElementById('consent').checked;
 
-      if (!firstName || !lastName || !email) {
-        alert('Please fill in your first name, last name, and email address.');
+      if (!firstName || !lastName || !email || !phone || !zip) {
+        alert('Please fill in all required fields.');
         return;
       }
 
@@ -2132,10 +2135,28 @@
         return;
       }
 
-      document.getElementById('contactForm').style.display = 'none';
-      const success = document.getElementById('formSuccess');
-      success.classList.add('visible');
-      success.style.display = 'block';
+      const btn = document.querySelector('.btn-form-submit');
+      btn.textContent = 'Submitting...';
+      btn.disabled = true;
+
+      try {
+        const res = await fetch('https://n8n.srv1379431.hstgr.cloud/webhook/karma-revero-lease-form', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ firstName, lastName, email, phone, zip, interest })
+        });
+
+        if (!res.ok) throw new Error('Submission failed');
+
+        document.getElementById('contactForm').style.display = 'none';
+        const success = document.getElementById('formSuccess');
+        success.classList.add('visible');
+        success.style.display = 'block';
+      } catch (err) {
+        alert('Something went wrong. Please try again.');
+        btn.textContent = 'Submit Request';
+        btn.disabled = false;
+      }
     }
   </script>
 
