@@ -1911,12 +1911,10 @@
                 <label for="zip">ZIP Code *</label>
                 <input type="text" id="zip" name="zip" placeholder="Enter your ZIP" maxlength="10" required />
               </div>
-            </div>
-
-            <div class="form-row">
               <div class="form-group">
                 <label for="interest">I Am Interested In</label>
-                <select id="interest" name="interest" multiple size="4">
+                <select id="interest" name="interest">
+                  <option value="">Select an option</option>
                   <option value="lease-offer">The $1,297/mo Lease Offer</option>
                   <option value="test-drive">Scheduling a Test Drive</option>
                   <option value="inventory">Viewing Available Inventory</option>
