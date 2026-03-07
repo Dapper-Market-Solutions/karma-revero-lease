@@ -838,10 +838,10 @@
     .contact-grid {
       display: grid;
       grid-template-columns: 1fr 1fr;
-      gap: 100px;
+      gap: 60px;
       max-width: 1200px;
       margin: 0 auto;
-      align-items: start;
+      align-items: center;
     }
 
     .contact-left .section-title {
@@ -856,17 +856,16 @@
       margin-bottom: 16px;
     }
 
-    .contact-cta-block {
-      margin-top: 48px;
+    .contact-image {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
     }
 
-    .contact-cta-text {
-      font-size: 14px;
-      font-weight: 300;
-      color: var(--taupe);
-      line-height: 1.8;
-      font-style: italic;
-      letter-spacing: 0.02em;
+    .contact-form-full {
+      grid-column: 1 / -1;
+      margin-top: 20px;
     }
 
     /* CONTACT FORM */
@@ -925,6 +924,14 @@
       grid-template-columns: 1fr 1fr;
       gap: 16px;
       margin-bottom: 16px;
+    }
+
+    .form-row-4 {
+      grid-template-columns: repeat(4, 1fr);
+    }
+
+    .form-row-3 {
+      grid-template-columns: repeat(3, 1fr);
     }
 
     .form-group {
@@ -1472,7 +1479,16 @@
 
       .contact-grid {
         grid-template-columns: 1fr;
-        gap: 60px;
+        gap: 40px;
+      }
+
+      .contact-form-full {
+        grid-column: 1;
+      }
+
+      .form-row-4,
+      .form-row-3 {
+        grid-template-columns: 1fr 1fr;
       }
 
       .why-lease,
@@ -1532,7 +1548,9 @@
     }
 
     @media (max-width: 600px) {
-      .form-row {
+      .form-row,
+      .form-row-4,
+      .form-row-3 {
         grid-template-columns: 1fr;
       }
 
@@ -1817,10 +1835,13 @@
         <p class="reveal reveal-delay-3">
           With only 160 produced globally, every Revero is spoken for quickly. We recommend acting now to secure your preferred configuration and join the Karma Circle.
         </p>
-
       </div>
 
       <div class="contact-right reveal reveal-delay-2">
+        <img class="contact-image" src="img/lifestyle-coastal.jpg" alt="Karma Revero" />
+      </div>
+
+      <div class="contact-form-full reveal reveal-delay-3">
         <div class="contact-form-wrap">
           <div class="form-br"></div>
           <div class="form-bl"></div>
@@ -1828,7 +1849,7 @@
           <p class="form-title">Request Information</p>
 
           <div id="contactForm">
-            <div class="form-row">
+            <div class="form-row form-row-4">
               <div class="form-group">
                 <label for="firstName">First Name *</label>
                 <input type="text" id="firstName" name="firstName" placeholder="First Name" required />
@@ -1837,42 +1858,42 @@
                 <label for="lastName">Last Name *</label>
                 <input type="text" id="lastName" name="lastName" placeholder="Last Name" required />
               </div>
+              <div class="form-group">
+                <label for="email">Email Address *</label>
+                <input type="email" id="email" name="email" placeholder="your@email.com" required />
+              </div>
+              <div class="form-group">
+                <label for="phone">Phone Number *</label>
+                <input type="tel" id="phone" name="phone" placeholder="(000) 000-0000" required />
+              </div>
             </div>
 
-            <div class="form-group">
-              <label for="email">Email Address *</label>
-              <input type="email" id="email" name="email" placeholder="your@email.com" required />
-            </div>
-
-            <div class="form-group">
-              <label for="phone">Phone Number *</label>
-              <input type="tel" id="phone" name="phone" placeholder="(000) 000-0000" required />
-            </div>
-
-            <div class="form-group">
-              <label for="zip">ZIP Code *</label>
-              <input type="text" id="zip" name="zip" placeholder="Enter your ZIP" maxlength="10" required />
-            </div>
-
-            <div class="form-group">
-              <label for="interest">I Am Interested In</label>
-              <select id="interest" name="interest">
-                <option value="">Select an option</option>
-                <option value="lease-offer">The $1,297/mo Lease Offer</option>
-                <option value="test-drive">Scheduling a Test Drive</option>
-                <option value="inventory">Viewing Available Inventory</option>
-                <option value="general">General Information</option>
-              </select>
+            <div class="form-row form-row-3">
+              <div class="form-group">
+                <label for="zip">ZIP Code *</label>
+                <input type="text" id="zip" name="zip" placeholder="Enter your ZIP" maxlength="10" required />
+              </div>
+              <div class="form-group">
+                <label for="interest">I Am Interested In</label>
+                <select id="interest" name="interest">
+                  <option value="">Select an option</option>
+                  <option value="lease-offer">The $1,297/mo Lease Offer</option>
+                  <option value="test-drive">Scheduling a Test Drive</option>
+                  <option value="inventory">Viewing Available Inventory</option>
+                  <option value="general">General Information</option>
+                </select>
+              </div>
+              <div class="form-group" style="display:flex;align-items:flex-end;">
+                <button type="button" class="btn-form-submit" onclick="handleFormSubmit()" style="width:100%;margin:0;">
+                  Submit Request
+                </button>
+              </div>
             </div>
 
             <div class="form-consent">
               <input type="checkbox" id="consent" name="consent" />
               <label for="consent">By submitting this form, I consent to being contacted by a Karma Automotive retailer regarding this lease offer and available inventory. I may opt out at any time.</label>
             </div>
-
-            <button type="button" class="btn-form-submit" onclick="handleFormSubmit()">
-              Submit Request
-            </button>
           </div>
 
           <div class="form-success" id="formSuccess">
