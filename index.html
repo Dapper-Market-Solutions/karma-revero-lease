@@ -1049,6 +1049,14 @@
       cursor: pointer;
     }
 
+    .form-consent a {
+      color: var(--grey-cool);
+      text-decoration: underline;
+    }
+    .form-consent a:hover {
+      color: var(--black);
+    }
+
     .form-consent input[type="checkbox"] {
       width: 14px;
       height: 14px;
@@ -1822,7 +1830,7 @@
 
             <div class="form-consent">
               <input type="checkbox" id="consent" name="consent" />
-              <label for="consent">By submitting this form, I consent to being contacted by a Karma Automotive retailer regarding this lease offer and available inventory. I may opt out at any time.</label>
+              <label for="consent">By submitting this form, I consent to receive communications from Karma Automotive and its affiliates. I acknowledge and agree to the Karma <a href="https://portal.karmaautomotive.com/karmab2c/en/privacylegal" target="_blank" rel="noopener noreferrer">Privacy Policy</a>.</label>
             </div>
 
             <button type="button" class="btn-form-submit" onclick="handleFormSubmit()">
