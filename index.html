@@ -2171,8 +2171,7 @@
           fs: 0,
           iv_load_policy: 3,
           cc_load_policy: 1,
-          cc_lang_pref: 'en',
-          hl: 'en'
+          cc_lang_pref: 'en'
         },
         events: {
           onReady: function(e) {
@@ -2180,29 +2179,8 @@
             e.target.playVideo();
             modalPlaying = true;
             modalMuted = true;
-            e.target.loadModule('captions');
-            setTimeout(function() {
-              try {
-                e.target.loadModule('captions');
-                e.target.setOption('captions', 'track', { languageCode: 'en' });
-              } catch(err) {}
-            }, 1000);
-            setTimeout(function() {
-              try {
-                e.target.setOption('captions', 'track', { languageCode: 'en' });
-              } catch(err) {}
-            }, 3000);
             updateModalPlayUI();
             updateModalVolUI();
-          },
-          onStateChange: function(e) {
-            // When video starts playing, try enabling captions again
-            if (e.data === YT.PlayerState.PLAYING && modalMuted) {
-              try {
-                e.target.loadModule('captions');
-                e.target.setOption('captions', 'track', { languageCode: 'en' });
-              } catch(err) {}
-            }
           }
         }
       });
@@ -2238,12 +2216,9 @@
         modalPlayer.unMute();
         modalPlayer.setVolume(80);
         modalMuted = false;
-        modalPlayer.unloadModule('captions');
       } else {
         modalPlayer.mute();
         modalMuted = true;
-        modalPlayer.loadModule('captions');
-        modalPlayer.setOption('captions', 'track', { languageCode: 'en' });
       }
       updateModalVolUI();
     }
