@@ -1828,25 +1828,8 @@
         <span>Close</span>
         <svg viewBox="0 0 14 14" fill="none"><path d="M1 1l12 12M13 1L1 13" stroke="currentColor" stroke-width="1.2"/></svg>
       </button>
-      <div class="video-modal-frame">
-        <div id="modalPlayer"></div>
-        <div class="video-click-guard"></div>
-      </div>
-      <div class="video-modal-controls">
-        <button onclick="toggleModalPlay()">
-          <svg id="modalPlayIcon" viewBox="0 0 20 20" fill="currentColor"><polygon points="4,2 18,10 4,18"/></svg>
-          <svg id="modalPauseIcon" viewBox="0 0 20 20" fill="currentColor" style="display:none;"><rect x="3" y="2" width="5" height="16"/><rect x="12" y="2" width="5" height="16"/></svg>
-          <span id="modalPlayLabel">Pause</span>
-        </button>
-        <button onclick="toggleModalVolume()">
-          <svg id="modalVolOnIcon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" style="display:none;">
-            <path d="M11 5L6 9H2v6h4l5 4V5z"/><path d="M19.07 4.93a10 10 0 010 14.14M15.54 8.46a5 5 0 010 7.07"/>
-          </svg>
-          <svg id="modalVolOffIcon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
-            <path d="M11 5L6 9H2v6h4l5 4V5z"/><line x1="23" y1="9" x2="17" y2="15"/><line x1="17" y1="9" x2="23" y2="15"/>
-          </svg>
-          <span id="modalVolLabel">Unmute</span>
-        </button>
+      <div class="video-modal-frame" style="position:relative;padding-bottom:56.25%;height:0;">
+        <div id="modalPlayerWrap" style="position:absolute;top:0;left:0;width:100%;height:100%;"></div>
       </div>
     </div>
   </div>
@@ -2146,118 +2129,19 @@
     <span class="footer-copy">&copy; Karma Automotive, Inc. All rights reserved.</span>
   </footer>
 
-  <script src="https://www.youtube.com/iframe_api"></script>
   <script>
-    // === Modal video player (YouTube IFrame API) ===
-    var modalPlayer = null;
-    var modalPlaying = false;
-    var modalMuted = true;
-    var apiReady = false;
-
-    function onYouTubeIframeAPIReady() {
-      apiReady = true;
-    }
-
-    function createModalPlayer() {
-      modalPlayer = new YT.Player('modalPlayer', {
-        videoId: 'eGBTt9PxoPA',
-        playerVars: {
-          autoplay: 1,
-          mute: 1,
-          controls: 0,
-          showinfo: 0,
-          rel: 0,
-          modestbranding: 1,
-          playsinline: 1,
-          cc_load_policy: 1
-        },
-        events: {
-          onReady: function(e) {
-            e.target.mute();
-            e.target.playVideo();
-            modalPlaying = true;
-            modalMuted = true;
-            // Load captions module and enable for muted playback
-            e.target.loadModule('captions');
-            e.target.setOption('captions', 'track', { languageCode: 'en' });
-            updateModalPlayUI();
-            updateModalVolUI();
-          }
-        }
-      });
-    }
-
-    function updateModalPlayUI() {
-      document.getElementById('modalPlayIcon').style.display = modalPlaying ? 'none' : '';
-      document.getElementById('modalPauseIcon').style.display = modalPlaying ? '' : 'none';
-      document.getElementById('modalPlayLabel').textContent = modalPlaying ? 'Pause' : 'Play';
-    }
-
-    function updateModalVolUI() {
-      document.getElementById('modalVolOnIcon').style.display = modalMuted ? 'none' : '';
-      document.getElementById('modalVolOffIcon').style.display = modalMuted ? '' : 'none';
-      document.getElementById('modalVolLabel').textContent = modalMuted ? 'Unmute' : 'Mute';
-    }
-
-    function toggleModalPlay() {
-      if (!modalPlayer) return;
-      if (modalPlaying) {
-        modalPlayer.pauseVideo();
-        modalPlaying = false;
-      } else {
-        modalPlayer.playVideo();
-        modalPlaying = true;
-      }
-      updateModalPlayUI();
-    }
-
-    function toggleModalVolume() {
-      if (!modalPlayer) return;
-      if (modalMuted) {
-        modalPlayer.unMute();
-        modalPlayer.setVolume(80);
-        modalMuted = false;
-        // Turn off captions when audio is on
-        modalPlayer.unloadModule('captions');
-      } else {
-        modalPlayer.mute();
-        modalMuted = true;
-        // Turn captions back on when muted
-        modalPlayer.loadModule('captions');
-        modalPlayer.setOption('captions', 'track', { languageCode: 'en' });
-      }
-      updateModalVolUI();
-    }
-
+    // === Simple iframe video modal ===
     function openVideoModal() {
       var modal = document.getElementById('videoModal');
+      var wrap = document.getElementById('modalPlayerWrap');
+      wrap.innerHTML = '<iframe width="100%" height="100%" src="https://www.youtube.com/embed/eGBTt9PxoPA?autoplay=1&rel=0&modestbranding=1&playsinline=1" title="Driving with Jonny — Karma Revero" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen style="position:absolute;top:0;left:0;width:100%;height:100%;"></iframe>';
       modal.classList.remove('hidden');
-      // Reset the player div so we can create a fresh one
-      var container = document.querySelector('.video-modal-frame');
-      if (modalPlayer && modalPlayer.destroy) {
-        try { modalPlayer.destroy(); } catch(e) {}
-        modalPlayer = null;
-      }
-      var oldDiv = document.getElementById('modalPlayer');
-      if (oldDiv) oldDiv.remove();
-      var div = document.createElement('div');
-      div.id = 'modalPlayer';
-      container.insertBefore(div, container.querySelector('.video-click-guard'));
-      if (apiReady) {
-        createModalPlayer();
-      }
     }
 
     function closeVideoModal() {
       var modal = document.getElementById('videoModal');
       modal.classList.add('hidden');
-      if (modalPlayer && modalPlayer.destroy) {
-        modalPlayer.pauseVideo();
-        modalPlayer.destroy();
-        modalPlayer = null;
-      }
-      modalPlaying = false;
-      modalMuted = true;
+      document.getElementById('modalPlayerWrap').innerHTML = '';
     }
 
     document.getElementById('videoModal').addEventListener('click', function(e) {
