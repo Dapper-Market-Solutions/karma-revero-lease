@@ -2169,7 +2169,8 @@
           playsinline: 1,
           disablekb: 1,
           fs: 0,
-          iv_load_policy: 3
+          iv_load_policy: 3,
+          cc_load_policy: 1
         },
         events: {
           onReady: function(e) {
@@ -2177,6 +2178,8 @@
             e.target.playVideo();
             modalPlaying = true;
             modalMuted = true;
+            e.target.loadModule('captions');
+            e.target.setOption('captions', 'track', { languageCode: 'en' });
             updateModalPlayUI();
             updateModalVolUI();
           }
@@ -2214,9 +2217,12 @@
         modalPlayer.unMute();
         modalPlayer.setVolume(80);
         modalMuted = false;
+        modalPlayer.unloadModule('captions');
       } else {
         modalPlayer.mute();
         modalMuted = true;
+        modalPlayer.loadModule('captions');
+        modalPlayer.setOption('captions', 'track', { languageCode: 'en' });
       }
       updateModalVolUI();
     }
