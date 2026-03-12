@@ -520,6 +520,60 @@
       width: 100%;
       height: 100%;
     }
+    .film-thumbnail {
+      position: relative;
+      max-width: 900px;
+      margin: 0 auto;
+      cursor: pointer;
+      overflow: hidden;
+    }
+    .film-thumbnail img {
+      width: 100%;
+      display: block;
+    }
+    .film-thumbnail-play {
+      position: absolute;
+      inset: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: rgba(0,0,0,0.25);
+      transition: background 0.3s ease;
+    }
+    .film-thumbnail:hover .film-thumbnail-play {
+      background: rgba(0,0,0,0.15);
+    }
+    .film-thumbnail-play svg {
+      width: 72px;
+      height: 72px;
+      filter: drop-shadow(0 2px 8px rgba(0,0,0,0.4));
+      transition: transform 0.3s ease;
+    }
+    .film-thumbnail:hover .film-thumbnail-play svg {
+      transform: scale(1.1);
+    }
+    .film-quote {
+      max-width: 700px;
+      margin: 40px auto 0;
+      text-align: center;
+    }
+    .film-quote blockquote {
+      font-size: 15px;
+      font-weight: 300;
+      font-style: italic;
+      color: rgba(255,255,255,0.75);
+      line-height: 1.8;
+      letter-spacing: 0.01em;
+      margin: 0 0 16px;
+    }
+    .film-quote cite {
+      font-size: 11px;
+      font-weight: 400;
+      font-style: normal;
+      text-transform: uppercase;
+      letter-spacing: var(--tracking-wide);
+      color: var(--taupe);
+    }
 
     /* Terms modal */
     .terms-modal-overlay {
@@ -1969,14 +2023,15 @@
   <section class="film-section">
     <p class="section-label reveal">Watch the Film</p>
     <h2 class="section-title reveal reveal-delay-1">Driving with Jonny</h2>
-    <div class="film-embed reveal reveal-delay-2">
-      <iframe
-        src="https://www.youtube.com/embed/eGBTt9PxoPA?rel=0&modestbranding=1&playsinline=1"
-        title="Driving with Jonny — Karma Revero"
-        frameborder="0"
-        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-        allowfullscreen
-      ></iframe>
+    <div class="film-thumbnail reveal reveal-delay-2" onclick="openVideoModal()">
+      <img src="img/jonny-thumbnail.png" alt="Jonny Lieberman with the Karma Revero" />
+      <div class="film-thumbnail-play">
+        <svg viewBox="0 0 80 80" fill="none"><circle cx="40" cy="40" r="38" fill="rgba(255,255,255,0.9)"/><polygon points="32,24 60,40 32,56" fill="#1a1a1a"/></svg>
+      </div>
+    </div>
+    <div class="film-quote reveal reveal-delay-3">
+      <blockquote>&ldquo;This thing is a driver&rsquo;s car. It really handles well. Really impressed by the way it drives&hellip; To answer my eternal question, would I have one? Absolutely.&rdquo;</blockquote>
+      <cite>&mdash; Jonny Lieberman</cite>
     </div>
   </section>
 
