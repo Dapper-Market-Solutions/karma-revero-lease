@@ -2234,15 +2234,18 @@
       modal.classList.remove('hidden');
       // Reset the player div so we can create a fresh one
       var container = document.querySelector('.video-modal-frame');
-      var oldPlayer = document.getElementById('modalPlayer');
-      if (oldPlayer) {
-        if (modalPlayer && modalPlayer.destroy) modalPlayer.destroy();
+      if (modalPlayer && modalPlayer.destroy) {
+        try { modalPlayer.destroy(); } catch(e) {}
         modalPlayer = null;
-        var div = document.createElement('div');
-        div.id = 'modalPlayer';
-        container.insertBefore(div, container.querySelector('.video-click-guard'));
       }
-      if (apiReady) createModalPlayer();
+      var oldDiv = document.getElementById('modalPlayer');
+      if (oldDiv) oldDiv.remove();
+      var div = document.createElement('div');
+      div.id = 'modalPlayer';
+      container.insertBefore(div, container.querySelector('.video-click-guard'));
+      if (apiReady) {
+        createModalPlayer();
+      }
     }
 
     function closeVideoModal() {
